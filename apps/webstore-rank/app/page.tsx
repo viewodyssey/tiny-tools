@@ -18,7 +18,7 @@ export default function Page() {
   return (
     <>
       <Header text="Docs" />
-      <Button />
+      <Button>Test Button</Button>
       <div>test</div>
       <RankingChart />
     </>

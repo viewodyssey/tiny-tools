@@ -12,9 +12,13 @@ function createContext<A extends {} | null>(displayName: string) {
   return [useContext, ctx.Provider] as const;
 }
 
+interface SearchUpdateItem {
+  id: string;
+  name: string;
+}
 export interface SearchData {
   keyword: string;
-  ranking: { date: string; items: string[] }[];
+  ranking: { date: string; items: SearchUpdateItem[] }[];
 }
 
 const DEFAULT_SEARCH = { keyword: "", ranking: [] };

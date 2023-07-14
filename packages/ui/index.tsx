@@ -1,5 +1,5 @@
 import * as React from "react";
 
 // component exports
-export * from "./Button";
+export * from "./components/ui/button";
 export * from "./Header";

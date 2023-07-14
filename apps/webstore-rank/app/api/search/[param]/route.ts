@@ -31,7 +31,10 @@ export async function GET(
         },
       }
     );
-    const itemRankingIds = items.map((item) => item.id);
+    const itemRankingIds = items.map((item) => ({
+      id: item.id,
+      name: item.name,
+    }));
     const searchTerm = await db.collection("search").findOneAndUpdate(
       {
         keyword: id,
@@ -52,7 +55,7 @@ export async function GET(
         returnDocument: "after",
       }
     );
-    return NextResponse.json({ searchData: searchTerm.value });
+    return NextResponse.json({ searchData: searchTerm.value, items: items });
   } catch (e) {
     console.error(e);
     NextResponse.json({
