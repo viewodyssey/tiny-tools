@@ -12,15 +12,35 @@ export default function Page() {
         await fetch(`/api/search/${encodeURIComponent("youtube summary")}`)
       ).json();
       setSearchData(res.searchData);
+      console.log(res.searchData);
     };
     getData();
   }, []);
+
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     const res = await (
+  //       await fetch(`/api/item/jfkjbfhcfaoldhgbnkekkoheganchiea`)
+  //     ).json();
+  //     console.log("pepee", res);
+  //   };
+  //   getData();
+  // }, []);
+
+  // useEffect(() => {
+  //   const getData = async () => {
+  //     const res = await (await fetch(`/api/search/update`)).json();
+  //     console.log("pepee", res);
+  //   };
+  //   getData();
+  // }, []);
+
   return (
     <>
       <Header text="Docs" />
       <Button>Test Button</Button>
-      <div>test</div>
-      <RankingChart />
+      <div>test2</div>
+      {/* <RankingChart /> */}
     </>
   );
 }

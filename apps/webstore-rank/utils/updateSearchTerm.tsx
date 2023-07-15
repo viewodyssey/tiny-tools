@@ -1,6 +1,4 @@
-import { NextResponse } from "next/server";
 import webstore from "chrome-webstore";
-import clientPromise from "@/utils/mongodb";
 import { Db } from "mongodb";
 
 const findItemIds = (db: Db, expr: any) => {
@@ -12,129 +10,117 @@ const findItemIds = (db: Db, expr: any) => {
     .toArray();
 };
 
-export const updateSearchTerm = async (id: string) => {
+export const updateSearchTerm = async (db: Db, id: string) => {
   const items = await webstore.items({
     category: "extensions",
     search: id,
     count: 100,
   });
+  const currentDate = new Date().toISOString().split("T")[0];
+  const itemIds = items.map((item) => item.id);
+  const isAlreadyUpdatedToday = await findItemIds(db, {
+    $expr: {
+      $and: [
+        { $in: ["id", itemIds] },
+        { $eq: [{ $arrayElemAt: ["$users.date", -1] }, currentDate] },
+        { $eq: [{ $arrayElemAt: ["$rating.date", -1] }, currentDate] },
+      ],
+    },
+  });
+  const noUserChange = await findItemIds(db, {
+    $expr: {
+      $and: [
+        { $in: ["id", itemIds] },
+        { $eq: [{ $arrayElemAt: ["$users.users", -1] }, currentDate] },
+      ],
+    },
+  });
+  const noRatingChange = await findItemIds(db, {
+    $expr: {
+      $and: [
+        { $in: ["id", itemIds] },
+        { $eq: [{ $arrayElemAt: ["$rating.rating", -1] }, currentDate] },
+      ],
+    },
+  });
 
-  try {
-    const client = await clientPromise;
-    const db = client.db("db");
-    const currentDate = new Date().toISOString().split("T")[0];
-    const itemIds = items.map((item) => item.id);
-    const isAlreadyUpdatedToday = await findItemIds(db, {
-      $expr: {
-        $and: [
-          { $in: ["id", itemIds] },
-          { $eq: [{ $arrayElemAt: ["$users.date", -1] }, currentDate] },
-          { $eq: [{ $arrayElemAt: ["$rating.date", -1] }, currentDate] },
-        ],
+  const updatedTodayIds = isAlreadyUpdatedToday.map((item) => item.id);
+  const noRatingChangeIds = noRatingChange.map((item) => item.id);
+  const noUserChangeIds = noUserChange.map((item) => item.id);
+  const noChangeIds = noRatingChangeIds.filter((x) =>
+    noUserChangeIds.includes(x)
+  );
+  const itemsNoUpdate = [
+    ...updatedTodayIds,
+    noChangeIds.filter((x) => !updatedTodayIds.includes(x)),
+  ];
+  const itemsToUpdate = items.filter(
+    (item) => !itemsNoUpdate.includes(item.id)
+  );
+  await db.collection("items").updateMany(
+    {
+      id: {
+        $in: itemsToUpdate.map((item) => item.id),
       },
-    });
-    const noUserChange = await findItemIds(db, {
-      $expr: {
-        $and: [
-          { $in: ["id", itemIds] },
-          { $eq: [{ $arrayElemAt: ["$users.users", -1] }, currentDate] },
-        ],
+    },
+    {
+      $pull: {
+        users: {
+          date: currentDate,
+        } as never,
+        rating: {
+          date: currentDate,
+        } as never,
       },
-    });
-    const noRatingChange = await findItemIds(db, {
-      $expr: {
-        $and: [
-          { $in: ["id", itemIds] },
-          { $eq: [{ $arrayElemAt: ["$rating.rating", -1] }, currentDate] },
-        ],
-      },
-    });
-
-    const updatedTodayIds = isAlreadyUpdatedToday.map((item) => item.id);
-    const noRatingChangeIds = noRatingChange.map((item) => item.id);
-    const noUserChangeIds = noUserChange.map((item) => item.id);
-    const noChangeIds = noRatingChangeIds.filter((x) =>
-      noUserChangeIds.includes(x)
-    );
-    const itemsNoUpdate = [
-      ...updatedTodayIds,
-      noChangeIds.filter((x) => !updatedTodayIds.includes(x)),
-    ];
-    const itemsToUpdate = items.filter(
-      (item) => !itemsNoUpdate.includes(item.id)
-    );
-    await db.collection("items").updateMany(
+    }
+  );
+  const updatedItems = [];
+  for (let i = 0; i < itemsToUpdate.length; i++) {
+    const itemToUpdate = itemsToUpdate[i];
+    const itemUpdated = await db.collection("items").findOneAndUpdate(
       {
-        id: {
-          $in: itemsToUpdate.map((item) => item.id),
+        id: itemToUpdate.id,
+      },
+      {
+        $set: {
+          id: itemToUpdate.id,
+          name: itemToUpdate.name,
+          title: itemToUpdate.title,
+          slug: itemToUpdate.slug,
+          category: itemToUpdate.category,
+          author: itemToUpdate.author,
+          developer: itemToUpdate.developer.verified
+            ? { verified: true }
+            : { verified: false },
+          featured: itemToUpdate.featured ? true : false,
+        },
+        $push: {
+          ...(noUserChangeIds.includes(itemToUpdate.id)
+            ? {}
+            : {
+                users: {
+                  date: currentDate,
+                  users: Number(
+                    itemToUpdate.users.replaceAll(",", "").replaceAll("+", "")
+                  ),
+                } as never,
+              }),
+          ...(noRatingChangeIds.includes(itemToUpdate.id)
+            ? {}
+            : {
+                rating: {
+                  date: currentDate,
+                  rating: itemToUpdate.rating,
+                } as never,
+              }),
         },
       },
       {
-        $pull: {
-          users: {
-            date: currentDate,
-          } as never,
-          rating: {
-            date: currentDate,
-          } as never,
-        },
+        upsert: true,
+        returnDocument: "after",
       }
     );
-    const updatedItems = [];
-    for (let i = 0; i < itemsToUpdate.length; i++) {
-      const itemToUpdate = itemsToUpdate[i];
-      const itemUpdated = await db.collection("items").findOneAndUpdate(
-        {
-          id: itemToUpdate.id,
-        },
-        {
-          $set: {
-            id: itemToUpdate.id,
-            name: itemToUpdate.name,
-            title: itemToUpdate.title,
-            slug: itemToUpdate.slug,
-            category: itemToUpdate.category,
-            author: itemToUpdate.author,
-            developer: itemToUpdate.developer.verified
-              ? { verified: true }
-              : { verified: false },
-            featured: itemToUpdate.featured ? true : false,
-          },
-          $push: {
-            ...(noUserChangeIds.includes(itemToUpdate.id)
-              ? {}
-              : {
-                  users: {
-                    date: currentDate,
-                    users: Number(
-                      itemToUpdate.users.replaceAll(",", "").replaceAll("+", "")
-                    ),
-                  } as never,
-                }),
-            ...(noRatingChangeIds.includes(itemToUpdate.id)
-              ? {}
-              : {
-                  rating: {
-                    date: currentDate,
-                    rating: itemToUpdate.rating,
-                  } as never,
-                }),
-          },
-        },
-        {
-          upsert: true,
-          returnDocument: "after",
-        }
-      );
-      updatedItems.push(itemUpdated);
-    }
-    return NextResponse.json({ updatedItems });
-  } catch (e) {
-    console.error(e);
-    NextResponse.json({
-      error: {
-        message: e.message,
-      },
-    });
+    updatedItems.push(itemUpdated);
   }
+  return updatedItems;
 };

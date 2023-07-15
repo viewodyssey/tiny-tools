@@ -4,14 +4,11 @@ import clientPromise from "@/utils/mongodb";
 
 export async function GET(
   request: Request,
-  { params }: { params: { param: string } }
+  { params }: { params: { id: string } }
 ) {
-  const { param } = params;
-  const id = param.toLowerCase();
-  const items = await webstore.items({
-    category: "extensions",
-    search: id,
-    count: 100,
+  const { id } = params;
+  const itemDetail = await webstore.detail({
+    id: id,
   });
 
   try {
@@ -19,35 +16,36 @@ export async function GET(
     const db = client.db("db");
     const currentDate = new Date().toISOString().split("T")[0];
 
-    await db.collection("search").updateOne(
+    const existingItem = await db.collection("items").findOne({ id: id });
+
+    if (existingItem) {
+      return NextResponse.json({ data: existingItem });
+    }
+    const itemUpdated = await db.collection("items").findOneAndUpdate(
       {
-        keyword: id,
-      },
-      {
-        $pull: {
-          ranking: {
-            date: currentDate,
-          },
-        },
-      }
-    );
-    const itemRankingIds = items.map((item) => ({
-      id: item.id,
-      name: item.name,
-    }));
-    const searchTerm = await db.collection("search").findOneAndUpdate(
-      {
-        keyword: id,
+        id: itemDetail.id,
       },
       {
         $set: {
-          keyword: id,
-        },
-        $push: {
-          ranking: {
-            date: currentDate,
-            items: itemRankingIds,
-          } as never,
+          id: itemDetail.id,
+          name: itemDetail.name,
+          title: itemDetail.title,
+          slug: itemDetail.slug,
+          category: itemDetail.category,
+          author: itemDetail.author,
+          developer: itemDetail.developer.verified
+            ? { verified: true }
+            : { verified: false },
+          featured: itemDetail.featured ? true : false,
+          users: [
+            {
+              users: Number(
+                itemDetail.users.replaceAll(",", "").replaceAll("+", "")
+              ),
+              date: currentDate,
+            },
+          ],
+          rating: [{ rating: itemDetail.rating, date: currentDate }],
         },
       },
       {
@@ -55,7 +53,7 @@ export async function GET(
         returnDocument: "after",
       }
     );
-    return NextResponse.json({ searchData: searchTerm.value, items: items });
+    return NextResponse.json({ data: itemUpdated.value });
   } catch (e) {
     console.error(e);
     NextResponse.json({

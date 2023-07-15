@@ -19,6 +19,13 @@ export async function GET(
     const db = client.db("db");
     const currentDate = new Date().toISOString().split("T")[0];
 
+    const existingItem = await db.collection("search").findOne({
+      keyword: id,
+    });
+    if (existingItem) {
+      return NextResponse.json({ searchData: existingItem, items: items });
+    }
+
     await db.collection("search").updateOne(
       {
         keyword: id,
