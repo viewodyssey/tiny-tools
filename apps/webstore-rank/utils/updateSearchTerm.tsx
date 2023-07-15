@@ -10,6 +10,21 @@ const findItemIds = (db: Db, expr: any) => {
     .toArray();
 };
 
+const findItemIdsMatchingObjects = (db: Db, expr: any) => {
+  return db
+    .collection("items")
+    .aggregate([
+      {
+        $match: {
+          $expr: {
+            $or: expr,
+          },
+        },
+      },
+    ])
+    .toArray();
+};
+
 export const updateSearchTerm = async (db: Db, id: string) => {
   const items = await webstore.items({
     category: "extensions",
@@ -18,6 +33,11 @@ export const updateSearchTerm = async (db: Db, id: string) => {
   });
   const currentDate = new Date().toISOString().split("T")[0];
   const itemIds = items.map((item) => item.id);
+  const itemObjects = items.map((item) => ({
+    id: item.id,
+    users: Number(item.users.replaceAll(",", "").replaceAll("+", "")),
+    rating: item.rating,
+  }));
   const isAlreadyUpdatedToday = await findItemIds(db, {
     $expr: {
       $and: [
@@ -27,22 +47,25 @@ export const updateSearchTerm = async (db: Db, id: string) => {
       ],
     },
   });
-  const noUserChange = await findItemIds(db, {
-    $expr: {
+
+  const noUserChange = await findItemIdsMatchingObjects(
+    db,
+    itemObjects.map((item) => ({
       $and: [
-        { $in: ["id", itemIds] },
-        { $eq: [{ $arrayElemAt: ["$users.users", -1] }, currentDate] },
+        { $eq: ["id", item.id] },
+        { $eq: [{ $arrayElemAt: ["$users.users", -1] }, item.users] },
       ],
-    },
-  });
-  const noRatingChange = await findItemIds(db, {
-    $expr: {
+    }))
+  );
+  const noRatingChange = await findItemIdsMatchingObjects(
+    db,
+    itemObjects.map((item) => ({
       $and: [
-        { $in: ["id", itemIds] },
-        { $eq: [{ $arrayElemAt: ["$rating.rating", -1] }, currentDate] },
+        { $eq: ["id", item.id] },
+        { $eq: [{ $arrayElemAt: ["$rating.rating", -1] }, item.rating] },
       ],
-    },
-  });
+    }))
+  );
 
   const updatedTodayIds = isAlreadyUpdatedToday.map((item) => item.id);
   const noRatingChangeIds = noRatingChange.map((item) => item.id);

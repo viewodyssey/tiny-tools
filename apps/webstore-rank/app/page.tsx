@@ -3,6 +3,9 @@ import { useEffect } from "react";
 import { Button, Header } from "ui";
 import { useDataContext } from "../hooks/DataContext";
 import RankingChart from "@/components/RankingChart";
+import Sidebar from "ui/components/Sidebar/Sidebar";
+import AppFrame from "ui/components/AppFrame/AppFrame";
+import CardFrame from "ui/components/CardFrame/CardFrame";
 
 export default function Page() {
   const { setSearchData } = useDataContext();
@@ -36,11 +39,11 @@ export default function Page() {
   // }, []);
 
   return (
-    <>
-      <Header text="Docs" />
+    <AppFrame>
       <Button>Test Button</Button>
-      <div>test2</div>
-      {/* <RankingChart /> */}
-    </>
+      <CardFrame>
+        <RankingChart />
+      </CardFrame>
+    </AppFrame>
   );
 }

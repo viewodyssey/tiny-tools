@@ -17,7 +17,7 @@ const parseDataToBumpChart = (data: SearchData) => {
   const nameById = {};
   const rankingById = {};
   data.ranking.reverse().forEach((entry, entryNumber) => {
-    entry.items.slice(0, 40).forEach((item, idx) => {
+    entry.items.slice(0, 20).forEach((item, idx) => {
       const { id, name } = item;
       if (Object.hasOwn(rankingById, id)) {
         rankingById[id].push({ x: entryNumber, y: idx + 1 });
@@ -45,7 +45,7 @@ const props = {
 const RankingChart = () => {
   const { searchData } = useDataContext();
   return (
-    <div className="w-full h-[700px]">
+    <div className="w-full h-[400px]">
       <ResponsiveBump data={parseDataToBumpChart(searchData)} {...props} />
     </div>
   );
