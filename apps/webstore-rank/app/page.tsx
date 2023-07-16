@@ -2,8 +2,7 @@
 import { useEffect, useState } from "react";
 import { useDataContext } from "../hooks/DataContext";
 import RankingChart from "@/components/RankingChart";
-import AppFrame from "ui/components/AppFrame/AppFrame";
-import CardFrame from "ui/components/CardFrame/CardFrame";
+import { AppFrame, CardFrame } from "ui";
 import UsersChart from "@/components/UsersChart";
 import RatingChart from "@/components/RatingChart";
 import TopResultsTable from "@/components/TopResultsTable";

@@ -1,11 +1,11 @@
-import Sidebar from "../Sidebar/Sidebar";
+import { Sidebar } from "../Sidebar/Sidebar";
 import { Command, CommandInput } from "../ui/command";
 
 interface AppFrameProps {
   children?: React.ReactNode;
 }
 
-const AppFrame = ({ children }: AppFrameProps) => {
+export const AppFrame = ({ children }: AppFrameProps) => {
   return (
     <div className="w-full max-w-screen h-screen flex">
       <Sidebar />
@@ -28,5 +28,3 @@ const AppFrame = ({ children }: AppFrameProps) => {
     </div>
   );
 };
-
-export default AppFrame;
