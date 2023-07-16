@@ -22,12 +22,12 @@ const TopResultsTable = ({ data }: TopResultsTableProps) => {
       return { ...d, keywordFrequency: totalFrequency };
     });
     return parsedData;
-  }, [searchData.keyword]);
+  }, [searchData.keyword, data]);
 
   return (
     <div className="overflow-auto max-h-[400px] h-full w-full">
-      {dataWithKeywordFrequency.map((row) => (
-        <div className="flex w-full">
+      {dataWithKeywordFrequency.map((row, i) => (
+        <div className="flex w-full" key={i}>
           <div
             className="w-full truncate"
             style={{ maxWidth: "calc(100% - 20px)" }}
