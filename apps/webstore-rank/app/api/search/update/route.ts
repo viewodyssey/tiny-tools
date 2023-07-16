@@ -16,7 +16,6 @@ export async function GET() {
     .collection("search")
     .find({}, { projection: { keyword: 1, _id: 0 } })
     .toArray();
-  console.log(allKeywords);
   for (let i = 0; i < allKeywords.length; i++) {
     try {
       await updateSearchRank(db, allKeywords[i].keyword);

@@ -7,9 +7,12 @@ interface AppFrameProps {
 
 const AppFrame = ({ children }: AppFrameProps) => {
   return (
-    <div className="w-full h-screen flex">
+    <div className="w-full max-w-screen h-screen flex">
       <Sidebar />
-      <div className="h-full w-full flex flex-col">
+      <div
+        className="h-full w-full flex flex-col"
+        style={{ maxWidth: "calc(100% - 240px)" }}
+      >
         <div className="w-full bg-background h-[48px] border-b border-border border-solid flex items-center px-4">
           <div className="w-[360px]">
             <Command className="rounded-lg border border-b-0 h-auto">

@@ -44,6 +44,7 @@ importers:
   apps/webstore-rank:
     specifiers:
       '@nivo/bump': ^0.83.0
+      '@nivo/scatterplot': ^0.83.0
       '@types/node': ^17.0.12
       '@types/react': ^18.0.22
       '@types/react-dom': ^18.0.7
@@ -64,6 +65,7 @@ importers:
       ui: workspace:*
     dependencies:
       '@nivo/bump': 0.83.0_v2m5e27vhdewzwhryxwfaorcca
+      '@nivo/scatterplot': 0.83.0_v2m5e27vhdewzwhryxwfaorcca
       chrome-webstore: 2.0.0
       mongodb: 5.6.0
       next: 13.4.1_biqbaboplfbrettd7655fr4n2y
@@ -392,6 +394,22 @@ packages:
     dev: false
     optional: true
 
+  /@nivo/annotations/0.83.0_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-FkfCprk1a3WCCNcQOfI2+Ww7vqTP/nJjQDVhFYf1YAaEGwXi4+OO4uJAtKtNcGE5cJWdOp+f0Gt4aNPGx7RtEw==}
+    peerDependencies:
+      react: '>= 16.14.0 < 19.0.0'
+    dependencies:
+      '@nivo/colors': 0.83.0_biqbaboplfbrettd7655fr4n2y
+      '@nivo/core': 0.83.0_v2m5e27vhdewzwhryxwfaorcca
+      '@react-spring/web': 9.7.2_biqbaboplfbrettd7655fr4n2y
+      '@types/prop-types': 15.7.5
+      lodash: 4.17.21
+      prop-types: 15.8.1
+      react: 18.2.0
+    transitivePeerDependencies:
+      - react-dom
+    dev: false
+
   /@nivo/axes/0.83.0_biqbaboplfbrettd7655fr4n2y:
     resolution: {integrity: sha512-rHMl+DdXQlY2wl7VCSQNcJi4QNISUWOkcWzJeJeVaYR73Z13SVGgiC7kW0czJuogDTSnDAJ/EcFCGmyGVuznGQ==}
     peerDependencies:
@@ -517,6 +535,31 @@ packages:
       lodash: 4.17.21
     dev: false
 
+  /@nivo/scatterplot/0.83.0_v2m5e27vhdewzwhryxwfaorcca:
+    resolution: {integrity: sha512-e2T6xNVr97XzP8zqwMv9op2VIzWrkRz7G1n9WbtPF/rTlqY7Um1SeIFQYR0to/87ipZikdcDG2nb9LDpUJp8oQ==}
+    peerDependencies:
+      react: '>= 16.14.0 < 19.0.0'
+    dependencies:
+      '@nivo/annotations': 0.83.0_biqbaboplfbrettd7655fr4n2y
+      '@nivo/axes': 0.83.0_biqbaboplfbrettd7655fr4n2y
+      '@nivo/colors': 0.83.0_biqbaboplfbrettd7655fr4n2y
+      '@nivo/core': 0.83.0_v2m5e27vhdewzwhryxwfaorcca
+      '@nivo/legends': 0.83.0_biqbaboplfbrettd7655fr4n2y
+      '@nivo/scales': 0.83.0
+      '@nivo/tooltip': 0.83.0_v2m5e27vhdewzwhryxwfaorcca
+      '@nivo/voronoi': 0.83.0_v2m5e27vhdewzwhryxwfaorcca
+      '@react-spring/web': 9.7.2_biqbaboplfbrettd7655fr4n2y
+      '@types/d3-scale': 3.3.2
+      '@types/d3-shape': 2.1.3
+      d3-scale: 3.3.0
+      d3-shape: 1.3.7
+      lodash: 4.17.21
+      react: 18.2.0
+    transitivePeerDependencies:
+      - prop-types
+      - react-dom
+    dev: false
+
   /@nivo/tooltip/0.83.0_v2m5e27vhdewzwhryxwfaorcca:
     resolution: {integrity: sha512-HewujRqZNmcVnAv/LPLVyYwViad+rYTsFMdzLRzuTPq2hju1R+cfxokTomunG8e1SDtUPtULEVXtPg2ATIzNYg==}
     dependencies:
@@ -525,6 +568,22 @@ packages:
     transitivePeerDependencies:
       - prop-types
       - react
+      - react-dom
+    dev: false
+
+  /@nivo/voronoi/0.83.0_v2m5e27vhdewzwhryxwfaorcca:
+    resolution: {integrity: sha512-wVpskesX2IEJHG82v0rbIUZ2y3MpvzTYM+DQl2gx8K1/Hucxwzk5ltg/aF9e/gfKU8gt24uct3M9TQTEfyhzgg==}
+    peerDependencies:
+      react: '>= 16.14.0 < 19.0.0'
+    dependencies:
+      '@nivo/core': 0.83.0_v2m5e27vhdewzwhryxwfaorcca
+      '@types/d3-delaunay': 5.3.1
+      '@types/d3-scale': 3.3.2
+      d3-delaunay: 5.3.0
+      d3-scale: 3.3.0
+      react: 18.2.0
+    transitivePeerDependencies:
+      - prop-types
       - react-dom
     dev: false
 
@@ -1127,6 +1186,10 @@ packages:
 
   /@types/d3-color/2.0.3:
     resolution: {integrity: sha512-+0EtEjBfKEDtH9Rk3u3kLOUXM5F+iZK+WvASPb0MhIZl8J8NUvGeZRwKCXl+P3HkYx5TdU4YtcibpqHkSR9n7w==}
+    dev: false
+
+  /@types/d3-delaunay/5.3.1:
+    resolution: {integrity: sha512-F6itHi2DxdatHil1rJ2yEFUNhejj8+0Acd55LZ6Ggwbdoks0+DxVY2cawNj16sjCBiWvubVlh6eBMVsYRNGLew==}
     dev: false
 
   /@types/d3-format/1.4.2:
@@ -1832,6 +1895,12 @@ packages:
     engines: {node: '>=12'}
     dev: false
 
+  /d3-delaunay/5.3.0:
+    resolution: {integrity: sha512-amALSrOllWVLaHTnDLHwMIiz0d1bBu9gZXd1FiLfXf8sHcX9jrcj81TVZOqD4UX7MgBZZ07c8GxzEgBpJqc74w==}
+    dependencies:
+      delaunator: 4.0.1
+    dev: false
+
   /d3-format/1.4.5:
     resolution: {integrity: sha512-J0piedu6Z8iB6TbIGfZgDzfXxUFN3qQRMofy2oPdXzQibYGqPB/9iMcxr/TGalU+2RsyDO+U4f33id8tbnSRMQ==}
     dev: false
@@ -1996,6 +2065,10 @@ packages:
       rimraf: 3.0.2
       slash: 3.0.0
     dev: true
+
+  /delaunator/4.0.1:
+    resolution: {integrity: sha512-WNPWi1IRKZfCt/qIDMfERkDp93+iZEmOxN2yy4Jg+Xhv8SLk2UTqqbe1sfiipn0and9QrE914/ihdx82Y/Giag==}
+    dev: false
 
   /detect-node-es/1.1.0:
     resolution: {integrity: sha512-ypdmJU/TbBby2Dxibuv7ZLW3Bs1QEmM7nHjEANfohJLvE0XVujisn1qPJcZxg+qDucsr+bP6fLD1rPS3AhJ7EQ==}

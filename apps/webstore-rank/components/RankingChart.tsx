@@ -16,13 +16,14 @@ const trimLongNames = (s: string, limit: number) => {
 const parseDataToBumpChart = (data: SearchData) => {
   const nameById = {};
   const rankingById = {};
-  data.ranking.reverse().forEach((entry, entryNumber) => {
+  data.ranking.reverse().forEach((entry) => {
+    const currentDate = entry.date;
     entry.items.slice(0, 20).forEach((item, idx) => {
       const { id, name } = item;
       if (Object.hasOwn(rankingById, id)) {
-        rankingById[id].push({ x: entryNumber, y: idx + 1 });
+        rankingById[id].push({ x: currentDate, y: idx + 1 });
       } else {
-        rankingById[id] = [{ x: entryNumber, y: idx + 1 }];
+        rankingById[id] = [{ x: currentDate, y: idx + 1 }];
         nameById[id] = name;
       }
     });
@@ -33,7 +34,6 @@ const parseDataToBumpChart = (data: SearchData) => {
       data: rankingById[key].sort(sortByDateString),
     };
   });
-  console.log(parsedData);
   return parsedData;
 };
 
