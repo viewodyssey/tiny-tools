@@ -24,7 +24,10 @@ export const CommandBarChrome = () => {
           onClick={() => setOpen(true)}
         >
           {searchData.keyword ? (
-            <Badge>{`keyword: ${searchData.keyword}`}</Badge>
+            <>
+              <Badge className="mr-1">{`keyword`}</Badge>
+              {`${searchData.keyword}`}
+            </>
           ) : (
             "Type a command or search..."
           )}
