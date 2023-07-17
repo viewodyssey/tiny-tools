@@ -38,15 +38,29 @@ const parseDataToBumpChart = (data: SearchData) => {
 };
 
 const props = {
-  margin: { top: 40, right: 180, bottom: 40, left: 40 },
+  margin: { top: 20, right: 180, bottom: 40, left: 40 },
   spacing: 8,
+  axisTop: null,
 };
 
 const RankingChart = () => {
   const { searchData } = useDataContext();
   return (
     <div className="w-full h-[400px]">
-      <ResponsiveBump data={parseDataToBumpChart(searchData)} {...props} />
+      <ResponsiveBump
+        data={parseDataToBumpChart(searchData)}
+        lineWidth={3}
+        activeLineWidth={6}
+        inactiveLineWidth={3}
+        inactiveOpacity={0.15}
+        pointSize={10}
+        activePointSize={16}
+        inactivePointSize={0}
+        pointBorderWidth={3}
+        activePointBorderWidth={3}
+        pointBorderColor={{ from: "serie.color" }}
+        {...props}
+      />
     </div>
   );
 };

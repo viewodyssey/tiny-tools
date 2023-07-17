@@ -2,10 +2,12 @@
 import { useEffect, useState } from "react";
 import { useDataContext } from "../hooks/DataContext";
 import RankingChart from "@/components/RankingChart";
-import { AppFrame, CardFrame } from "ui";
+import { AppFrame, Button, CardFrame } from "ui";
 import UsersChart from "@/components/UsersChart";
 import RatingChart from "@/components/RatingChart";
 import TopResultsTable from "@/components/TopResultsTable";
+import { ShoppingBag, TextCursorInput } from "lucide-react";
+import { CommandBarChrome } from "@/components/CommandBarChrome";
 
 export default function Page() {
   const { searchData, setSearchData } = useDataContext();
@@ -42,21 +44,47 @@ export default function Page() {
   // }, []);
 
   return (
-    <AppFrame>
-      <div className="pt-2 pb-4 px-2 flex flex-col gap-1">
-        <div className="uppercase text-xs">Search trends for</div>
-        <h3 className="font-semibold text-xl">{searchData.keyword}</h3>
+    <AppFrame
+      sidebarChildren={
+        <div className="mt-16">
+          <div className="flex flex-col">
+            <Button variant="ghost" className="justify-start px-2">
+              <TextCursorInput size={16} className="mr-2" /> Search Terms
+            </Button>
+            <Button variant="ghost" className="justify-start px-2">
+              <ShoppingBag size={16} className="mr-2" />
+              Extension
+            </Button>
+          </div>
+        </div>
+      }
+      topbarChildren={<CommandBarChrome />}
+    >
+      <div className="flex justify-between items-center w-full">
+        <div className="pt-2 pb-4 px-2 flex flex-col gap-1">
+          <div className="uppercase text-xs">Search trends for</div>
+          <h3 className="font-semibold text-xl">{searchData.keyword}</h3>
+        </div>
+        <div className="flex">
+          <Button variant="outline">Filter</Button>
+        </div>
       </div>
       <div className="flex flex-col gap-4 w-full">
-        <div className="flex gap-4 w-full relative pr-4">
+        <div className="flex gap-4 w-full relative">
           <div className="basis-2/3 flex-grow-0 ">
             <CardFrame title="Search Ranking">
               <RankingChart />
             </CardFrame>
           </div>
           <div className="basis-1/3 flex-grow-0 overflow-auto">
-            <CardFrame title="Top Results">
-              <TopResultsTable data={itemsData} />
+            <CardFrame
+              title="Top Results"
+              className="px-0"
+              titleClassName="px-4"
+            >
+              <div className="pt-4 h-full max-h-[400px]">
+                <TopResultsTable data={itemsData} />
+              </div>
             </CardFrame>
           </div>
         </div>
