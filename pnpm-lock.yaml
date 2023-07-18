@@ -48,6 +48,31 @@ importers:
       tsconfig: link:../../packages/tsconfig
       typescript: 4.9.5
 
+  apps/web copy:
+    specifiers:
+      '@types/node': ^17.0.12
+      '@types/react': ^18.0.22
+      '@types/react-dom': ^18.0.7
+      eslint-config-custom: workspace:*
+      next: ^13.4.1
+      react: ^18.2.0
+      react-dom: ^18.2.0
+      tsconfig: workspace:*
+      typescript: ^4.5.3
+      ui: workspace:*
+    dependencies:
+      next: 13.4.1_biqbaboplfbrettd7655fr4n2y
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      ui: link:../../packages/ui
+    devDependencies:
+      '@types/node': 17.0.45
+      '@types/react': 18.2.5
+      '@types/react-dom': 18.2.3
+      eslint-config-custom: link:../../packages/eslint-config-custom
+      tsconfig: link:../../packages/tsconfig
+      typescript: 4.9.5
+
   apps/webstore-rank:
     specifiers:
       '@highlight-run/next': ^3.1.2
@@ -3412,14 +3437,6 @@ packages:
     dependencies:
       acorn: 7.4.1
 
-  /acorn-jsx/5.3.2_acorn@8.8.2:
-    resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
-    peerDependencies:
-      acorn: ^6.0.0 || ^7.0.0 || ^8.0.0
-    dependencies:
-      acorn: 8.8.2
-    dev: false
-
   /acorn-walk/8.2.0:
     resolution: {integrity: sha512-k+iyHEuPgSw6SbuDpGQM+06HQUa04DZ3o+F6CSzXMvvI5KMvnaEqXe+YVe555R9nn6GPt404fos4wcgpw12SDA==}
     engines: {node: '>=0.4.0'}
@@ -4721,7 +4738,7 @@ packages:
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dependencies:
       acorn: 8.8.2
-      acorn-jsx: 5.3.2_acorn@8.8.2
+      acorn-jsx: 5.3.2
       eslint-visitor-keys: 3.4.1
     dev: false
 
