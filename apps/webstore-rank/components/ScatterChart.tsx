@@ -9,6 +9,7 @@ const ResponsiveScatterPlot = dynamic(
 
 interface ScatterProps {
   data: any[];
+  chartProps?: any;
 }
 
 const props = {
@@ -16,10 +17,10 @@ const props = {
   spacing: 8,
 };
 
-const ScatterChart = ({ data }: ScatterProps) => {
+const ScatterChart = ({ data, chartProps }: ScatterProps) => {
   return (
     <div className="w-full h-[400px]">
-      <ResponsiveScatterPlot data={data} {...props} />
+      <ResponsiveScatterPlot data={data} {...props} {...chartProps} />
     </div>
   );
 };

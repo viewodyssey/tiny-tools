@@ -7,3 +7,13 @@ export function sortByDateString(a, b) {
   }
   return 0;
 }
+
+export function sortByX(a, b) {
+  if (a.x < b.x) {
+    return -1;
+  }
+  if (a.x > b.x) {
+    return 1;
+  }
+  return 0;
+}

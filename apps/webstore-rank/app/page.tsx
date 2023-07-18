@@ -6,24 +6,39 @@ import { AppFrame, Button, CardFrame } from "ui";
 import UsersChart from "@/components/UsersChart";
 import RatingChart from "@/components/RatingChart";
 import TopResultsTable from "@/components/TopResultsTable";
-import { ShoppingBag, TextCursorInput } from "lucide-react";
+import {
+  ChevronDown,
+  ChevronUp,
+  ShoppingBag,
+  TextCursorInput,
+} from "lucide-react";
 import { CommandBarChrome } from "@/components/CommandBarChrome";
+import { useSearchParams } from "next/navigation";
 
 export default function Page() {
-  const { searchData, setSearchData } = useDataContext();
+  const { searchData, setSearchData, searchTerm, setSearchTerm } =
+    useDataContext();
   const [itemsData, setItemsData] = useState([]);
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    const keyword = searchParams.get("keyword");
+    if (keyword) {
+      setSearchTerm(decodeURIComponent(String(keyword)));
+    }
+  }, [searchParams]);
 
   useEffect(() => {
     const getData = async () => {
       const res = await (
-        await fetch(`/api/search/${encodeURIComponent("youtube summary")}`)
+        await fetch(`/api/search/${encodeURIComponent(searchTerm)}`)
       ).json();
       setSearchData(res.searchData);
       setItemsData(res.items);
       console.log(res);
     };
     getData();
-  }, []);
+  }, [searchTerm]);
 
   // useEffect(() => {
   //   const getData = async () => {
@@ -72,14 +87,12 @@ export default function Page() {
       <div className="flex flex-col gap-4 w-full">
         <div className="flex gap-4 w-full relative">
           <div className="basis-2/3 flex-grow-0 ">
-            <CardFrame title="Search Ranking">
-              <RankingChart />
-            </CardFrame>
+            <RankingChart />
           </div>
           <div className="basis-1/3 flex-grow-0 overflow-auto">
             <CardFrame
               title="Top Results"
-              className="px-0"
+              className="!px-0"
               titleClassName="px-4"
             >
               <div className="pt-4 h-full max-h-[400px]">

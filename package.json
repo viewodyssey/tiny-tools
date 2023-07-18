@@ -15,5 +15,10 @@
     "turbo": "latest"
   },
   "packageManager": "pnpm@7.15.0",
-  "name": "tiny-tools"
+  "name": "tiny-tools",
+  "dependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.1.0",
+    "@typescript-eslint/parser": "^6.1.0",
+    "eslint-plugin-react": "^7.32.2"
+  }
 }

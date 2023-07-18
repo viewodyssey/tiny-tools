@@ -19,7 +19,18 @@ const UsersChart = ({ data }: UsersChartProps) => {
     ];
     return parsedData;
   };
-  return <ScatterChart data={parseDataToScatterChart(data)} />;
+  return (
+    <ScatterChart
+      data={parseDataToScatterChart(data)}
+      chartProps={{
+        axisBottom: {
+          legend: "Rank",
+          legendOffset: 32,
+          legendPosition: "middle",
+        },
+      }}
+    />
+  );
 };
 
 export default UsersChart;

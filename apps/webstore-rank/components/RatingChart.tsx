@@ -20,7 +20,18 @@ const RatingChart = ({ data }: RatingChartProps) => {
     ];
     return parsedData;
   };
-  return <ScatterChart data={parseDataToScatterChart(data)} />;
+  return (
+    <ScatterChart
+      data={parseDataToScatterChart(data)}
+      chartProps={{
+        axisBottom: {
+          legend: "Rank",
+          legendOffset: 32,
+          legendPosition: "middle",
+        },
+      }}
+    />
+  );
 };
 
 export default RatingChart;

@@ -26,6 +26,8 @@ const DEFAULT_SEARCH = { keyword: "", ranking: [] };
 interface DataContext {
   searchData: SearchData;
   setSearchData: (value: SearchData) => void;
+  searchTerm: string;
+  setSearchTerm: (value: string) => void;
 }
 
 export const [useDataContext, DataContextProvider] =
@@ -33,12 +35,15 @@ export const [useDataContext, DataContextProvider] =
 
 export const DataWrapper = ({ children }: PropsWithChildren) => {
   const [searchData, setSearchData] = useState<SearchData>(DEFAULT_SEARCH);
+  const [searchTerm, setSearchTerm] = useState("youtube summary");
 
   return (
     <DataContextProvider
       value={{
         searchData,
         setSearchData,
+        searchTerm,
+        setSearchTerm,
       }}
     >
       {children}

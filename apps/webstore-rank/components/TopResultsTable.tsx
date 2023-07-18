@@ -35,7 +35,7 @@ const TopResultsTable = ({ data }: TopResultsTableProps) => {
 
   return (
     <div className="overflow-auto max-h-[400px] h-full w-full">
-      <div className="flex w-full border-b-border border-b py-1 px-4 font-medium text-sm text-gray-400">
+      <div className="flex w-full py-2 px-4 font-medium text-sm text-gray-400">
         <div
           className="w-full truncate"
           style={{ maxWidth: "calc(100% - 80px)" }}
@@ -45,14 +45,20 @@ const TopResultsTable = ({ data }: TopResultsTableProps) => {
         <div className="basis-[80px] flex-grow-0 text-right">Keywords</div>
       </div>
       {dataWithKeywordFrequency.map((row, i) => (
-        <div className="flex w-full px-4 border-b-border border-b py-1" key={i}>
+        <div
+          className="flex w-full px-4 border-t-border border-t py-2 items-center"
+          key={i}
+        >
+          <div className="basis-[40px] flex-grow-0">
+            <img src={row.images["26x26"]} alt="Icon" className="w-6 h-6" />
+          </div>
           <div
-            className="w-full truncate"
-            style={{ maxWidth: "calc(100% - 80px)" }}
+            className="w-full truncate text-sm"
+            style={{ maxWidth: "calc(100% - 120px)" }}
           >
             {row.name}
           </div>
-          <div className="basis-[80px] flex-grow-0 text-right">
+          <div className="basis-[80px] flex-grow-0 text-right pr-2 text-sm">
             {row.keywordFrequency}
           </div>
         </div>
