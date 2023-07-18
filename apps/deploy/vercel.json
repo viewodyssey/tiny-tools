@@ -2,11 +2,11 @@
   "rewrites": [
     {
       "source": "/chrome-extension/",
-      "destination": "https://daskalos.vercel.com/"
+      "destination": "https://daskalos.vercel.com/chrome-extension/"
     },
     {
       "source": "/chrome-extension/:match*",
-      "destination": "https://daskalos.vercel.com/:match*"
+      "destination": "https://daskalos.vercel.com/chrome-extension/:match*"
     }
   ]
 }
