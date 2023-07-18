@@ -50,7 +50,12 @@ const TopResultsTable = ({ data }: TopResultsTableProps) => {
           key={i}
         >
           <div className="basis-[40px] flex-grow-0">
-            <img src={row.images["26x26"]} alt="Icon" className="w-6 h-6" />
+            <img
+              src={row.images["26x26"]}
+              alt="Icon"
+              className="w-6 h-6"
+              referrerPolicy="no-referrer"
+            />
           </div>
           <div
             className="w-full truncate text-sm"

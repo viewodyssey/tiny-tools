@@ -36,9 +36,9 @@ const parseDataToBumpChart = (
       .forEach((item, idx) => {
         const { id, name } = item;
         if (Object.hasOwn(rankingById, id)) {
-          rankingById[id].push({ x: currentDate, y: idx + 1 });
+          rankingById[id].push({ x: currentDate, y: startIndex + idx + 1 });
         } else {
-          rankingById[id] = [{ x: currentDate, y: idx + 1 }];
+          rankingById[id] = [{ x: currentDate, y: startIndex + idx + 1 }];
           nameById[id] = name;
         }
       });
