@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/chrome-extension/",
+      "destination": "https://daskalos.vercel.com/"
+    },
+    {
+      "source": "/chrome-extension/:match*",
+      "destination": "https://daskalos.vercel.com/:match*"
+    }
+  ]
+}
