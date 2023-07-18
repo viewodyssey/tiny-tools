@@ -1,8 +1,9 @@
 {
+  "trailingSlash": false,
   "rewrites": [
     {
       "source": "/chrome-extension",
-      "destination": "https://daskalos.vercel.app/chrome-extension/"
+      "destination": "https://daskalos.vercel.app/chrome-extension"
     },
     {
       "source": "/chrome-extension/:match*",
