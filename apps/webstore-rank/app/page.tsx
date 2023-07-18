@@ -31,7 +31,9 @@ export default function Page() {
   useEffect(() => {
     const getData = async () => {
       const res = await (
-        await fetch(`/api/search/${encodeURIComponent(searchTerm)}`)
+        await fetch(
+          `/chrome-extension/api/search/${encodeURIComponent(searchTerm)}`
+        )
       ).json();
       setSearchData(res.searchData);
       setItemsData(res.items);

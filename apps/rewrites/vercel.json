@@ -1,7 +1,7 @@
 {
   "rewrites": [
     {
-      "source": "/chrome-extension/",
+      "source": "/chrome-extension",
       "destination": "https://daskalos.vercel.app/chrome-extension/"
     },
     {
