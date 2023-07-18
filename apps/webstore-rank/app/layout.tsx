@@ -17,7 +17,7 @@ export default function RootLayout({
 }) {
   return (
     <>
-      <HighlightInit
+      {/* <HighlightInit
         projectId={"ng2kkyg1"}
         tracingOrigins
         networkRecording={{
@@ -25,7 +25,7 @@ export default function RootLayout({
           recordHeadersAndBody: true,
           urlBlocklist: [],
         }}
-      />
+      /> */}
       <html lang="en">
         <Script
           strategy="afterInteractive"

@@ -73,11 +73,13 @@ export const CommandBarChrome = () => {
               <CommandItem
                 value="keyword"
                 onSelect={() => {
-                  const params = new URLSearchParams(searchParams);
-                  params.set("keyword", value);
-                  const newParams = params.toString();
-                  router.push(`/?${newParams}`);
-                  setOpen(false);
+                  if (value.length > 2) {
+                    const params = new URLSearchParams(searchParams);
+                    params.set("keyword", value);
+                    const newParams = params.toString();
+                    router.push(`/?${newParams}`);
+                    setOpen(false);
+                  }
                 }}
               >
                 <TextCursorInput className="mr-2 h-4 w-4" />

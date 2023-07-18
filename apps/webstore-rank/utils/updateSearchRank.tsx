@@ -24,6 +24,9 @@ export const updateSearchRank = async (db: Db, id: string) => {
     id: item.id,
     name: item.name,
   }));
+  if (itemRankingIds.length < 10) {
+    return [];
+  }
   const searchTerm = await db.collection("search").findOneAndUpdate(
     {
       keyword: id,

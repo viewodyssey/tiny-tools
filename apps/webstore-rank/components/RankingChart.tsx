@@ -3,7 +3,7 @@ import { sortByDateString, sortByX } from "@/utils/sort";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import dynamic from "next/dynamic";
 import { useMemo, useState } from "react";
-import { Button, CardFrame } from "ui";
+import { Button, CardFrame, Skeleton } from "ui";
 
 const ResponsiveBump = dynamic(
   () => import("@nivo/bump").then((m) => m.ResponsiveBump),
@@ -75,7 +75,7 @@ const props = {
 const LIMIT = 20;
 
 const RankingChart = () => {
-  const { searchData } = useDataContext();
+  const { searchData, loading } = useDataContext();
   const [range, setRange] = useState(0);
 
   const parsedData = useMemo(() => {
@@ -118,20 +118,26 @@ const RankingChart = () => {
       }
     >
       <div className="w-full h-[400px]">
-        <ResponsiveBump
-          data={parsedData}
-          lineWidth={3}
-          activeLineWidth={6}
-          inactiveLineWidth={3}
-          inactiveOpacity={0.15}
-          pointSize={8}
-          activePointSize={12}
-          inactivePointSize={0}
-          pointBorderWidth={3}
-          activePointBorderWidth={3}
-          pointBorderColor={{ from: "serie.color" }}
-          {...props}
-        />
+        {loading ? (
+          <div className="py-4 h-full w-full">
+            <Skeleton className="h-full w-full" />
+          </div>
+        ) : (
+          <ResponsiveBump
+            data={parsedData}
+            lineWidth={3}
+            activeLineWidth={6}
+            inactiveLineWidth={3}
+            inactiveOpacity={0.15}
+            pointSize={8}
+            activePointSize={12}
+            inactivePointSize={0}
+            pointBorderWidth={3}
+            activePointBorderWidth={3}
+            pointBorderColor={{ from: "serie.color" }}
+            {...props}
+          />
+        )}
       </div>
     </CardFrame>
   );

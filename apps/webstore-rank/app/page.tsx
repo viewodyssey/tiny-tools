@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import { useDataContext } from "../hooks/DataContext";
 import RankingChart from "@/components/RankingChart";
-import { AppFrame, Button, CardFrame } from "ui";
+import { AppFrame, Button, CardFrame, Skeleton } from "ui";
 import UsersChart from "@/components/UsersChart";
 import RatingChart from "@/components/RatingChart";
 import TopResultsTable from "@/components/TopResultsTable";
@@ -14,10 +14,17 @@ import {
 } from "lucide-react";
 import { CommandBarChrome } from "@/components/CommandBarChrome";
 import { useSearchParams } from "next/navigation";
+import { ChartFilterMenu } from "@/components/ChartFilterMenu";
 
 export default function Page() {
-  const { searchData, setSearchData, searchTerm, setSearchTerm } =
-    useDataContext();
+  const {
+    searchData,
+    setSearchData,
+    searchTerm,
+    setSearchTerm,
+    setLoading,
+    loading,
+  } = useDataContext();
   const [itemsData, setItemsData] = useState([]);
   const searchParams = useSearchParams();
 
@@ -30,6 +37,7 @@ export default function Page() {
 
   useEffect(() => {
     const getData = async () => {
+      setLoading(true);
       const res = await (
         await fetch(
           `/chrome-extension/api/search/${encodeURIComponent(searchTerm)}`
@@ -38,6 +46,7 @@ export default function Page() {
       setSearchData(res.searchData);
       setItemsData(res.items);
       console.log(res);
+      setLoading(false);
     };
     getData();
   }, [searchTerm]);
@@ -80,10 +89,12 @@ export default function Page() {
       <div className="flex justify-between items-center w-full">
         <div className="pt-2 pb-4 px-2 flex flex-col gap-1">
           <div className="uppercase text-xs">Search trends for</div>
-          <h3 className="font-semibold text-xl">{searchData.keyword}</h3>
+          <h3 className="font-semibold text-xl">
+            {loading ? <Skeleton className="h-6 w-12" /> : searchData.keyword}
+          </h3>
         </div>
         <div className="flex">
-          <Button variant="outline">Filter</Button>
+          <ChartFilterMenu />
         </div>
       </div>
       <div className="flex flex-col gap-4 w-full">
@@ -94,10 +105,10 @@ export default function Page() {
           <div className="basis-1/3 flex-grow-0 overflow-auto">
             <CardFrame
               title="Top Results"
-              className="!px-0"
+              className="!px-0 !h-full !pb-0"
               titleClassName="px-4"
             >
-              <div className="pt-4 h-full max-h-[400px]">
+              <div className="pt-4 h-full">
                 <TopResultsTable data={itemsData} />
               </div>
             </CardFrame>

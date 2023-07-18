@@ -24,7 +24,7 @@ export const AppFrame = ({
         <div className="w-full bg-background h-[48px] border-b border-border border-solid flex items-center px-4">
           {topbarChildren}
         </div>
-        <div className="h-full overflow-auto py-3 px-4">{children}</div>
+        <div className="h-full overflow-auto py-4 pb-8 px-8">{children}</div>
       </div>
     </div>
   );

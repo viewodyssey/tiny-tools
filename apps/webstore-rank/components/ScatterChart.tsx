@@ -1,4 +1,5 @@
 import dynamic from "next/dynamic";
+import { Skeleton } from "ui";
 
 const ResponsiveScatterPlot = dynamic(
   () => import("@nivo/scatterplot").then((m) => m.ResponsiveScatterPlot),
@@ -10,6 +11,7 @@ const ResponsiveScatterPlot = dynamic(
 interface ScatterProps {
   data: any[];
   chartProps?: any;
+  loading?: boolean;
 }
 
 const props = {
@@ -17,10 +19,16 @@ const props = {
   spacing: 8,
 };
 
-const ScatterChart = ({ data, chartProps }: ScatterProps) => {
+const ScatterChart = ({ data, chartProps, loading }: ScatterProps) => {
   return (
     <div className="w-full h-[400px]">
-      <ResponsiveScatterPlot data={data} {...props} {...chartProps} />
+      {loading ? (
+        <div className="py-4 h-full w-full">
+          <Skeleton className="h-full w-full" />
+        </div>
+      ) : (
+        <ResponsiveScatterPlot data={data} {...props} {...chartProps} />
+      )}
     </div>
   );
 };

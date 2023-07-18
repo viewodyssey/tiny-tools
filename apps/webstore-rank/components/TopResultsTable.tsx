@@ -2,6 +2,7 @@ import { useDataContext } from "@/hooks/DataContext";
 import { getSubstringOccurences } from "@/utils/findkeyword";
 import { useMemo } from "react";
 import {
+  Skeleton,
   Table,
   TableBody,
   TableCaption,
@@ -16,7 +17,7 @@ interface TopResultsTableProps {
 }
 
 const TopResultsTable = ({ data }: TopResultsTableProps) => {
-  const { searchData } = useDataContext();
+  const { searchData, loading } = useDataContext();
 
   const dataWithKeywordFrequency = useMemo(() => {
     const searchKeywords = searchData.keyword.split(" ");
@@ -44,30 +45,50 @@ const TopResultsTable = ({ data }: TopResultsTableProps) => {
         </div>
         <div className="basis-[80px] flex-grow-0 text-right">Keywords</div>
       </div>
-      {dataWithKeywordFrequency.map((row, i) => (
-        <div
-          className="flex w-full px-4 border-t-border border-t py-2 items-center"
-          key={i}
-        >
-          <div className="basis-[40px] flex-grow-0">
-            <img
-              src={row.images["26x26"]}
-              alt="Icon"
-              className="w-6 h-6"
-              referrerPolicy="no-referrer"
-            />
-          </div>
-          <div
-            className="w-full truncate text-sm"
-            style={{ maxWidth: "calc(100% - 120px)" }}
-          >
-            {row.name}
-          </div>
-          <div className="basis-[80px] flex-grow-0 text-right pr-2 text-sm">
-            {row.keywordFrequency}
-          </div>
-        </div>
-      ))}
+      {loading
+        ? Array.from(Array(8).keys()).map((row) => (
+            <div
+              className="flex w-full px-4 border-t-border border-t py-2 items-center"
+              key={row}
+            >
+              <div className="basis-[40px] flex-grow-0">
+                <Skeleton className="w-6 h-6" />
+              </div>
+              <div
+                className="w-full truncate text-sm"
+                style={{ maxWidth: "calc(100% - 120px)" }}
+              >
+                <Skeleton className="w-8/12 h-6" />
+              </div>
+              <div className="basis-[80px] flex-grow-0 flex justify-end pr-2 text-sm">
+                <Skeleton className="w-4 h-6" />
+              </div>
+            </div>
+          ))
+        : dataWithKeywordFrequency.map((row, i) => (
+            <div
+              className="flex w-full px-4 border-t-border border-t py-2 items-center"
+              key={i}
+            >
+              <div className="basis-[40px] flex-grow-0">
+                <img
+                  src={row.images["26x26"]}
+                  alt="Icon"
+                  className="w-6 h-6"
+                  referrerPolicy="no-referrer"
+                />
+              </div>
+              <div
+                className="w-full truncate text-sm"
+                style={{ maxWidth: "calc(100% - 120px)" }}
+              >
+                {row.name}
+              </div>
+              <div className="basis-[80px] flex-grow-0 text-right pr-2 text-sm">
+                {row.keywordFrequency}
+              </div>
+            </div>
+          ))}
     </div>
   );
 };
