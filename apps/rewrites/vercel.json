@@ -3,7 +3,7 @@
   "rewrites": [
     {
       "source": "/chrome-extension",
-      "destination": "https://daskalos.vercel.app"
+      "destination": "https://daskalos.vercel.app/"
     },
     {
       "source": "/chrome-extension/:match*",
