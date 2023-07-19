@@ -10,7 +10,7 @@
       "destination": "https://daskalos.vercel.app/chrome-extension/:match*"
     },
     {
-      "source": "",
+      "source": "/",
       "destination": "https://tinytools-web.vercel.app"
     },
     {
