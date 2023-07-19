@@ -3,6 +3,7 @@ import { Metadata } from "next";
 import Wrapper from "@/components/Wrapper";
 import Script from "next/script";
 import { HighlightInit } from "@highlight-run/next/highlight-init";
+import { Suspense } from "react";
 
 const headData = {
   title: "Tiny Tools - Chrome Extension Ranking",
@@ -49,7 +50,9 @@ export default function RootLayout({
         />
 
         <body className="bg-gray-50">
-          <Wrapper>{children}</Wrapper>
+          <Suspense fallback={<></>}>
+            <Wrapper>{children}</Wrapper>
+          </Suspense>
         </body>
       </html>
     </>

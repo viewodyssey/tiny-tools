@@ -1,7 +1,7 @@
 "use client";
 
 import { DataWrapper } from "@/hooks/DataContext";
-import React, { Suspense, useEffect } from "react";
+import React, { useEffect } from "react";
 import * as gtag from "@/utils/gtag";
 import { usePathname } from "next/navigation";
 
@@ -14,11 +14,7 @@ const Wrapper = ({ children }: { children: React.ReactNode }) => {
     handleRouteChange(pathname);
   }, [pathname]);
 
-  return (
-    <Suspense fallback={<></>}>
-      <DataWrapper>{children}</DataWrapper>
-    </Suspense>
-  );
+  return <DataWrapper>{children}</DataWrapper>;
 };
 
 export default Wrapper;
