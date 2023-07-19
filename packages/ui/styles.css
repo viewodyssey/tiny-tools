@@ -16,6 +16,7 @@
     --card: 0 0% 100%;
     --card-foreground: 222.2 47.4% 11.2%;
 
+    --hover: 214.3 13.8% 91.4%;
     --border: 214.3 13.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
 
@@ -49,6 +50,7 @@
     --card: 224 71% 4%;
     --card-foreground: 213 31% 91%;
 
+    --hover: 216 34% 17%;
     --border: 216 34% 17%;
     --input: 216 34% 17%;
 
@@ -75,7 +77,7 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-gray-50 text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
 

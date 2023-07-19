@@ -10,6 +10,6 @@ export * from "./components/ui/badge";
 export * from "./components/ui/dropdown-menu";
 export * from "./components/Sidebar/Sidebar";
 export * from "./components/CardFrame/CardFrame";
-export * from "./components/AppFrame/AppFrame";
+export { AppFrame } from "./components/AppFrame/AppFrame";
 export * from "./components/random";
 export * from "./Header";

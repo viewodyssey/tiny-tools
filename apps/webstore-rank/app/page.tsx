@@ -6,12 +6,7 @@ import { AppFrame, Button, CardFrame, Skeleton } from "ui";
 import UsersChart from "@/components/UsersChart";
 import RatingChart from "@/components/RatingChart";
 import TopResultsTable from "@/components/TopResultsTable";
-import {
-  ChevronDown,
-  ChevronUp,
-  ShoppingBag,
-  TextCursorInput,
-} from "lucide-react";
+import { ShoppingBag, TextCursorInput } from "lucide-react";
 import { CommandBarChrome } from "@/components/CommandBarChrome";
 import { useSearchParams } from "next/navigation";
 import { ChartFilterMenu } from "@/components/ChartFilterMenu";

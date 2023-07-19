@@ -7,7 +7,7 @@ interface SidebarProps {
 export const Sidebar = ({ children }: SidebarProps) => {
   return (
     <div className="basis-[240px] flex-shrink-0 bg-background border-r border-border border-solid py-4 px-4">
-      <div className="w-full">
+      <div className="w-full max-w-[150px]">
         <TinyToolsWordmark />
       </div>
       {children}

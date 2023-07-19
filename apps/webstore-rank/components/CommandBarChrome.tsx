@@ -4,7 +4,7 @@ import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import { TextCursorInput, ShoppingBag } from "lucide-react";
 
 import { useRouter, useSearchParams } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   CommandDialog,
   CommandInput,
@@ -17,11 +17,17 @@ import {
 } from "ui";
 
 export const CommandBarChrome = () => {
-  const { searchData } = useDataContext();
+  const { searchData, searchTerm } = useDataContext();
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("");
   const searchParams = useSearchParams();
   const router = useRouter();
+
+  useEffect(() => {
+    if (searchTerm.length <= 2) {
+      setOpen(true);
+    }
+  }, [searchTerm]);
 
   return (
     <>
@@ -49,7 +55,15 @@ export const CommandBarChrome = () => {
         </div>
         <CommandDialog
           open={open}
-          onOpenChange={setOpen}
+          onOpenChange={(op) => {
+            if (op) {
+              setOpen(op);
+            } else {
+              if (searchTerm.length > 2) {
+                setOpen(op);
+              }
+            }
+          }}
           commandProps={{
             filter: (value, search) => {
               if (
@@ -88,7 +102,7 @@ export const CommandBarChrome = () => {
               <CommandItem value="extension">
                 <ShoppingBag className="mr-2 h-4 w-4" />
                 <Badge className="mr-2 font-normal">Extension</Badge>
-                <span>{value || "Enter an extension URL..."}</span>
+                <span>{value || "Enter an Chrome extension URL..."}</span>
               </CommandItem>
             </CommandGroup>
           </CommandList>

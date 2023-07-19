@@ -15,7 +15,7 @@
     "config": "workspace:*",
     "eslint": "^7.32.0",
     "eslint-config-custom": "workspace:*",
-    "react": "^17.0.2",
+    "react": "^18.2.0",
     "tsconfig": "workspace:*",
     "typescript": "^4.5.2"
   },

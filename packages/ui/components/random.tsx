@@ -1,6 +1,7 @@
 export const TinyToolsWordmark = () => {
   return (
     <svg
+      className="w-full"
       width="165"
       height="40"
       viewBox="0 0 165 40"

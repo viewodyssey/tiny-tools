@@ -35,10 +35,12 @@ export default function RootLayout({
       />
       <html lang="en">
         <Script
+          id="gaScript1"
           strategy="afterInteractive"
           src="https://www.googletagmanager.com/gtag/js?id=G-KFTQWN9V6D"
         ></Script>
         <Script
+          id="gaScript2"
           strategy="afterInteractive"
           dangerouslySetInnerHTML={{
             __html: `window.dataLayer = window.dataLayer || [];

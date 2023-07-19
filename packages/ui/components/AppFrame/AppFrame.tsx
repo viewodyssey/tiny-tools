@@ -1,8 +1,7 @@
+"use client";
 import { useEffect, useState } from "react";
 import { Sidebar } from "../Sidebar/Sidebar";
-import { Badge } from "../ui/badge";
 import { Button } from "../ui/button";
-import { Command, CommandInput } from "../ui/command";
 import { Menu } from "lucide-react";
 
 interface AppFrameProps {
@@ -19,7 +18,7 @@ export const AppFrame = ({
   const [isVisible, setVisible] = useState(true);
 
   const resize = () => {
-    let currentShowNav = window.innerWidth > 640;
+    const currentShowNav = window.innerWidth > 640;
     setVisible(currentShowNav);
   };
 
@@ -33,7 +32,11 @@ export const AppFrame = ({
   return (
     <div className="w-full max-w-screen h-screen flex">
       {isVisible && <Sidebar>{sidebarChildren}</Sidebar>}
-      <div className="h-full w-full flex flex-col md:max-w-[calc(100%-240px)]">
+      <div
+        className={`h-full w-full flex flex-col ${
+          isVisible ? `md:max-w-[calc(100%-240px)]` : `md:max-w-full`
+        }`}
+      >
         <div className="w-full bg-background h-[48px] border-b border-border border-solid flex items-center px-4">
           <div className="flex items-center gap-4">
             <Button
@@ -46,9 +49,7 @@ export const AppFrame = ({
             {topbarChildren}
           </div>
         </div>
-        <div className="h-full overflow-auto py-4 pb-8 px-4 md:px-8">
-          {children}
-        </div>
+        <div className="h-full overflow-auto py-4 px-4 md:px-6">{children}</div>
       </div>
     </div>
   );
