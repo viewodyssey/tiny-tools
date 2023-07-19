@@ -48,7 +48,9 @@ export default function Page() {
       console.log(res);
       setLoading(false);
     };
-    getData();
+    if (searchTerm.length > 2) {
+      getData();
+    }
   }, [searchTerm]);
 
   // useEffect(() => {
@@ -99,10 +101,10 @@ export default function Page() {
       </div>
       <div className="flex flex-col gap-4 w-full">
         <div className="flex flex-col md:flex-row gap-4 w-full relative">
-          <div className="md:basis-2/3 flex-grow-0 ">
+          <div className="md:w-[calc(66%-0.5rem)] flex-grow-0 ">
             <RankingChart />
           </div>
-          <div className="md:basis-1/3 flex-grow-0 overflow-auto">
+          <div className="md:w-[calc(34%-0.5rem)] flex-grow-0">
             <CardFrame
               title="Top Results"
               className="!px-0 !h-full !pb-0"

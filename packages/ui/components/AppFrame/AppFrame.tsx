@@ -16,7 +16,7 @@ export const AppFrame = ({
   sidebarChildren,
   topbarChildren,
 }: AppFrameProps) => {
-  const [isVisible, setVisible] = useState(false);
+  const [isVisible, setVisible] = useState(true);
 
   const resize = () => {
     let currentShowNav = window.innerWidth > 640;

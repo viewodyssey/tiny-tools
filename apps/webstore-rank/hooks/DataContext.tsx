@@ -45,7 +45,7 @@ export const [useDataContext, DataContextProvider] =
 export const DataWrapper = ({ children }: PropsWithChildren) => {
   const [searchData, setSearchData] = useState<SearchData>(DEFAULT_SEARCH);
   const [filters, setFilters] = useState<FilterData>(DEFAULT_SETTINGS);
-  const [searchTerm, setSearchTerm] = useState("youtube summary");
+  const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(true);
 
   return (

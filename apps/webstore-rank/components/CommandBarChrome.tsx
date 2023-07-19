@@ -1,6 +1,8 @@
+"use-client";
 import { useDataContext } from "@/hooks/DataContext";
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import { TextCursorInput, ShoppingBag } from "lucide-react";
+
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import {
@@ -18,8 +20,8 @@ export const CommandBarChrome = () => {
   const { searchData } = useDataContext();
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState("");
-  const router = useRouter();
   const searchParams = useSearchParams();
+  const router = useRouter();
 
   return (
     <>
@@ -74,7 +76,7 @@ export const CommandBarChrome = () => {
                     const params = new URLSearchParams(searchParams);
                     params.set("keyword", value);
                     const newParams = params.toString();
-                    router.push(`/?${newParams}`);
+                    window.location.href = `/chrome-extension/?${newParams}`;
                     setOpen(false);
                   }
                 }}
