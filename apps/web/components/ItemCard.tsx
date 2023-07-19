@@ -21,9 +21,9 @@ export const ItemCard = ({ item }: { item: AppItem }) => {
         >
           {item.icon}
         </div>
-        <div className="mt-2 px-1 z-10">
-          <h4>{item.title}</h4>
-          <div className="text-textSecondary text-sm leading-tight mt-1">
+        <div className="mt-1 px-1 z-10">
+          <h4 className="text-sm">{item.title}</h4>
+          <div className="text-textSecondary text-xs leading-tight mt-1">
             {item.description && item.description}
           </div>
         </div>
