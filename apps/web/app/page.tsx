@@ -10,7 +10,7 @@ const APPS: AppItem[] = [
       "View historical rankings and analytics for search terms and Chrome extensions. ",
     href: "/chrome-extension",
     icon: (
-      <div className="w-full h-full flex items-center justify-center gap-1">
+      <div className="w-full h-full flex items-center justify-center gap-2">
         <Chrome size={36} color="#0ea5e9" />
         <ListOrdered size={36} color="#0ea5e9" />
       </div>
@@ -20,14 +20,15 @@ const APPS: AppItem[] = [
   {
     title: "LinkedIn Alumni",
     description:
-      "View historical rankings and analytics for search terms and Chrome extensions. ",
+      "Check-in on current and past members of organizatios, on steroids. ",
     href: "/chrome-extension",
     icon: (
-      <div className="w-full h-full flex items-center justify-center gap-1">
+      <div className="w-full h-full flex items-center justify-center gap-2">
         <Linkedin size={36} color="#3b82f6" />
         <Globe size={36} color="#3b82f6" />
       </div>
     ),
+    color: "bg-blue-100",
   },
 ];
 

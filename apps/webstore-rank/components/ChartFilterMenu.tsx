@@ -1,7 +1,6 @@
 import { useDataContext } from "@/hooks/DataContext";
 import { updatePropertyState } from "@/utils/misc";
 import { Filter } from "lucide-react";
-import { useState } from "react";
 import {
   DropdownMenu,
   DropdownMenuTrigger,
