@@ -2,7 +2,7 @@ import { SearchData, useDataContext } from "@/hooks/DataContext";
 import { sortByDateString, sortByX } from "@/utils/sort";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import dynamic from "next/dynamic";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Button, CardFrame, Skeleton } from "ui";
 
 const ResponsiveBump = dynamic(
@@ -66,12 +66,6 @@ const parseDataToBumpChart = (
   return parsedData;
 };
 
-const props = {
-  margin: { top: 20, right: 180, bottom: 40, left: 40 },
-  spacing: 8,
-  axisTop: null,
-};
-
 const LIMIT = 20;
 
 const RankingChart = () => {
@@ -81,6 +75,34 @@ const RankingChart = () => {
   const parsedData = useMemo(() => {
     return parseDataToBumpChart(searchData, range, LIMIT);
   }, [searchData, range]);
+
+  const [isMobile, setMobile] = useState(false);
+
+  const resize = () => {
+    let currentHideNav = window.innerWidth <= 640;
+    setMobile(currentHideNav);
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", resize);
+    resize();
+
+    return () => window.removeEventListener("resize", resize);
+  }, []);
+
+  const props = useMemo(
+    () => ({
+      margin: {
+        top: 20,
+        right: isMobile ? 80 : 180,
+        bottom: 40,
+        left: isMobile ? 20 : 40,
+      },
+      spacing: 8,
+      axisTop: null,
+    }),
+    [isMobile]
+  );
 
   return (
     <CardFrame

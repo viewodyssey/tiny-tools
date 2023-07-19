@@ -86,7 +86,7 @@ export default function Page() {
       }
       topbarChildren={<CommandBarChrome />}
     >
-      <div className="flex justify-between items-center w-full">
+      <div className="flex flex-col md:flex-row md:justify-between md:items-center w-full pb-4">
         <div className="pt-2 pb-4 px-2 flex flex-col gap-1">
           <div className="uppercase text-xs">Search trends for</div>
           <h3 className="font-semibold text-xl">
@@ -98,11 +98,11 @@ export default function Page() {
         </div>
       </div>
       <div className="flex flex-col gap-4 w-full">
-        <div className="flex gap-4 w-full relative">
-          <div className="basis-2/3 flex-grow-0 ">
+        <div className="flex flex-col md:flex-row gap-4 w-full relative">
+          <div className="md:basis-2/3 flex-grow-0 ">
             <RankingChart />
           </div>
-          <div className="basis-1/3 flex-grow-0 overflow-auto">
+          <div className="md:basis-1/3 flex-grow-0 overflow-auto">
             <CardFrame
               title="Top Results"
               className="!px-0 !h-full !pb-0"
@@ -114,13 +114,13 @@ export default function Page() {
             </CardFrame>
           </div>
         </div>
-        <div className="flex gap-4 w-full">
-          <div className="basis-1/2 flex-shrink-0 flex-grow-0 ">
+        <div className="flex flex-col md:flex-row gap-4 w-full relative">
+          <div className="w-full md:w-[calc(50%-0.5rem)]  flex-grow-0 ">
             <CardFrame title="Users">
               <UsersChart data={itemsData} />
             </CardFrame>
           </div>
-          <div className="w-full">
+          <div className="w-full md:w-[calc(50%-0.5rem)] ">
             <CardFrame title="Rating">
               <RatingChart data={itemsData} />
             </CardFrame>

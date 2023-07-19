@@ -1,6 +1,6 @@
 import { useDataContext } from "@/hooks/DataContext";
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
-import { TextCursorInput, ShoppingBag, Menu } from "lucide-react";
+import { TextCursorInput, ShoppingBag } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import {
@@ -24,9 +24,6 @@ export const CommandBarChrome = () => {
   return (
     <>
       <div className="flex items-center gap-4">
-        <Button variant="ghost" size="icon">
-          <Menu className="h-4 w-4" />
-        </Button>
         <div className="w-[360px]">
           <Button
             variant="outline"

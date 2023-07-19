@@ -4,10 +4,16 @@ import Wrapper from "@/components/Wrapper";
 import Script from "next/script";
 import { HighlightInit } from "@highlight-run/next/highlight-init";
 
-export const metadata: Metadata = {
+const headData = {
   title: "Tiny Tools - Chrome Extension Ranking",
   description:
     "View historical rankings and analytics for search terms and Chrome extensions. ",
+};
+
+export const metadata: Metadata = {
+  title: headData.title,
+  description: headData.description,
+  openGraph: { title: headData.title, description: headData.description },
 };
 
 export default function RootLayout({
@@ -17,7 +23,7 @@ export default function RootLayout({
 }) {
   return (
     <>
-      {/* <HighlightInit
+      <HighlightInit
         projectId={"ng2kkyg1"}
         tracingOrigins
         networkRecording={{
@@ -25,7 +31,7 @@ export default function RootLayout({
           recordHeadersAndBody: true,
           urlBlocklist: [],
         }}
-      /> */}
+      />
       <html lang="en">
         <Script
           strategy="afterInteractive"
