@@ -2,8 +2,9 @@ import { Metadata } from "next";
 import "ui/styles.css";
 
 const headData = {
-  title: "Tiny Tools",
-  description: "Little apps with big impact. ",
+  title: "Odyssey - View your digital journey. ",
+  description:
+    "Corporations own lots of data about your online activity. Gather and visualize your digital footprint in a beautiful way. ",
 };
 
 export const metadata: Metadata = {

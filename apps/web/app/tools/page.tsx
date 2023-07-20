@@ -1,7 +1,19 @@
 import FrameWrapper from "@/components/FrameWrapper";
 import { AppItem, ItemCard } from "@/components/ItemCard";
 import { Chrome, Globe, Linkedin, ListOrdered } from "lucide-react";
+import { Metadata } from "next";
 import { CardFrame } from "ui";
+
+const headData = {
+  title: "Tiny Tools",
+  description: "Little apps with big impact. ",
+};
+
+export const metadata: Metadata = {
+  title: headData.title,
+  description: headData.description,
+  openGraph: { title: headData.title, description: headData.description },
+};
 
 const APPS: AppItem[] = [
   {
