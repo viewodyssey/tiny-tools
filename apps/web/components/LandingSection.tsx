@@ -1,4 +1,5 @@
-import { Button } from "ui";
+import Link from "next/link";
+import { buttonVariants } from "ui";
 
 const LandingSection = () => {
   return (
@@ -11,7 +12,9 @@ const LandingSection = () => {
           Corporations own lots of data about your online activity. Gather and
           visualize your digital footprint in a beautiful way.{" "}
         </p>
-        <Button>Get started</Button>
+        <Link className={buttonVariants()} href="/tools">
+          Get started
+        </Link>
       </div>
       <div className="flex flex-col gap-2">
         <h2 className="font-medium text-2xl">Tiny digital delights. </h2>
