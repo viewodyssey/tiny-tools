@@ -1,7 +1,11 @@
 import { useDataContext } from "@/hooks/DataContext";
 import { getSubstringOccurences } from "@/utils/findkeyword";
+import { ArrowUpRight } from "lucide-react";
+import Link from "next/link";
 import { useMemo } from "react";
 import {
+  Button,
+  buttonVariants,
   Skeleton,
   Table,
   TableBody,
@@ -67,7 +71,7 @@ const TopResultsTable = ({ data }: TopResultsTableProps) => {
           ))
         : dataWithKeywordFrequency.map((row, i) => (
             <div
-              className="flex w-full px-4 border-t-border border-t py-2 items-center"
+              className="flex w-full px-4 border-t-border border-t py-1 items-center"
               key={i}
             >
               <div className="basis-[40px] flex-grow-0">
@@ -79,10 +83,24 @@ const TopResultsTable = ({ data }: TopResultsTableProps) => {
                 />
               </div>
               <div
-                className="w-full truncate text-sm"
+                className="w-full"
                 style={{ maxWidth: "calc(100% - 120px)" }}
               >
-                {row.name}
+                <Link
+                  className={`${buttonVariants({
+                    variant: "ghost",
+                  })} justify-start !px-2 max-w-full flex gap-2`}
+                  href={`https://chrome.google.com/webstore/detail/${row.id}`}
+                  target="_blank"
+                  rel="noopener nofollow noreferrer"
+                >
+                  <div className="text-left truncate text-sm">{row.name}</div>
+                  <ArrowUpRight
+                    size={16}
+                    color={"#888"}
+                    className="basis-4 flex-shrink-0"
+                  />
+                </Link>
               </div>
               <div className="basis-[80px] flex-grow-0 text-right pr-2 text-sm">
                 {row.keywordFrequency}

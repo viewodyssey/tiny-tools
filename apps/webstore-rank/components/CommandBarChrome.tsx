@@ -26,13 +26,15 @@ export const CommandBarChrome = () => {
   useEffect(() => {
     if (searchTerm.length <= 2) {
       setOpen(true);
+    } else {
+      setOpen(false);
     }
   }, [searchTerm]);
 
   return (
     <>
       <div className="flex items-center gap-4">
-        <div className="w-[360px]">
+        <div className="w-full md:w-[360px]">
           <Button
             variant="outline"
             className="text-gray-400 font-normal w-full justify-start pl-2"
