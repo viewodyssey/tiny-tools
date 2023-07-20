@@ -1,6 +1,9 @@
 # Tiny Tools
 
 An open-source monorepo of projects that enhance various workflows and help you view data in interesting way. 
+
+<img src="https://github.com/viewodyssey/tiny-tools/blob/main/cover.png"/>
+
 ### Apps and Packages
 
 - `webstore-rank`: Historical information for chrome extensions and search terms on the Chrome Web Store. 
