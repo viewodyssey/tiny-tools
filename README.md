@@ -1,10 +1,10 @@
 # Tiny Tools
 
-An open-source collection of small projects that enhance various workflows and help you view data in interesting way. 
+An open-source monorepo of projects that enhance various workflows and help you view data in interesting way. 
 ### Apps and Packages
 
 - `webstore-rank`: Historical information for chrome extensions and search terms on the Chrome Web Store. 
-- `web`: Menu for Tiny Tools. 
+- `web`: Homepage for Odyssey. 
 - `rewrites`: Deployment for URL subpaths for each app.
 - `ui`: Component library bootstrapped by @shadcn/ui
 - `eslint-config-custom`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
