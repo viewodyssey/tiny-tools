@@ -13,7 +13,7 @@ module.exports = {
     },
     extend: {
       colors: {
-        textPrimary: colors.gray[700],
+        textPrimary: colors.gray[800],
         textSecondary: colors.gray[500],
         hover: colors.slate[100],
         border: "hsl(var(--border))",

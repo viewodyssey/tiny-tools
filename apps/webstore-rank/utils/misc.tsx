@@ -1,3 +1,5 @@
+export const BASEPATH = "/chrome-extension";
+
 export const updatePropertyState = (
   setState: (v: any) => void,
   property: string,

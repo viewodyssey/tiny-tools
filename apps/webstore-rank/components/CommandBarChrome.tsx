@@ -3,7 +3,7 @@ import { useDataContext } from "@/hooks/DataContext";
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import { TextCursorInput, ShoppingBag } from "lucide-react";
 
-import { useRouter, useSearchParams } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import {
   CommandDialog,
@@ -17,17 +17,15 @@ import {
 } from "ui";
 
 export const CommandBarChrome = () => {
-  const { searchData, searchTerm } = useDataContext();
-  const [open, setOpen] = useState(false);
+  const { searchData, searchTerm, open, setOpen } = useDataContext();
   const [value, setValue] = useState("");
   const searchParams = useSearchParams();
   const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
-    if (searchTerm.length <= 2) {
-      setOpen(true);
-    } else {
-      setOpen(false);
+    if (searchTerm.length <= 2 && !pathname.includes("/new")) {
+      window.location.href = "/chrome-extension/new";
     }
   }, [searchTerm]);
 

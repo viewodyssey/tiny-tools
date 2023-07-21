@@ -27,6 +27,7 @@ export interface FilterData {
 
 const DEFAULT_SEARCH = { keyword: "", ranking: [] };
 const DEFAULT_SETTINGS = { cumulative_rating: false };
+export const DEFAULT_SEARCH_TERM = "tinytools_nothing_set";
 
 interface DataContext {
   searchData: SearchData;
@@ -37,6 +38,8 @@ interface DataContext {
   setSearchTerm: (value: string) => void;
   loading: boolean;
   setLoading: (value: boolean) => void;
+  open: boolean;
+  setOpen: (value: boolean) => void;
 }
 
 export const [useDataContext, DataContextProvider] =
@@ -45,8 +48,9 @@ export const [useDataContext, DataContextProvider] =
 export const DataWrapper = ({ children }: PropsWithChildren) => {
   const [searchData, setSearchData] = useState<SearchData>(DEFAULT_SEARCH);
   const [filters, setFilters] = useState<FilterData>(DEFAULT_SETTINGS);
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState(DEFAULT_SEARCH_TERM);
   const [loading, setLoading] = useState(false);
+  const [open, setOpen] = useState(false);
 
   return (
     <DataContextProvider
@@ -59,6 +63,8 @@ export const DataWrapper = ({ children }: PropsWithChildren) => {
         setLoading,
         filters,
         setFilters,
+        open,
+        setOpen,
       }}
     >
       {children}
