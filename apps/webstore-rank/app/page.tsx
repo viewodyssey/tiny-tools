@@ -15,8 +15,8 @@ export default function Page() {
       sidebarChildren={<SidebarItems />}
       topbarChildren={<CommandBarChrome />}
     >
-      <CardFrame className="w-full h-full">
-        <div className="flex gap-8 flex-col items-center justify-center gap-4 w-full h-full">
+      <CardFrame className="w-full h-full overflow-auto">
+        <div className="flex gap-8 flex-col items-center justify-center gap-4 w-full min-h-full py-8">
           <div className="flex gap-2">
             <div className="p-3 rounded-md border border-gray-200 shadow">
               <Chrome size={24} className="text-gray-300" />

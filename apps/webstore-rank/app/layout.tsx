@@ -24,15 +24,19 @@ export default function RootLayout({
 }) {
   return (
     <>
-      <HighlightInit
-        projectId={"ng2kkyg1"}
-        tracingOrigins
-        networkRecording={{
-          enabled: true,
-          recordHeadersAndBody: true,
-          urlBlocklist: [],
-        }}
-      />
+      {process.env.NODE_ENV !== "development" ? (
+        <></>
+      ) : (
+        <HighlightInit
+          projectId={"ng2kkyg1"}
+          tracingOrigins
+          networkRecording={{
+            enabled: true,
+            recordHeadersAndBody: true,
+            urlBlocklist: [],
+          }}
+        />
+      )}
       <html lang="en">
         <Script
           id="gaScript1"

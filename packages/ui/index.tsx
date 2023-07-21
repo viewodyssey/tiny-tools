@@ -23,6 +23,7 @@ export {
 } from "./components/ui/dialog";
 export * from "./components/ui/table";
 export * from "./components/ui/badge";
+export * from "./components/ui/hover-card";
 export * from "./components/ui/dropdown-menu";
 export * from "./components/Sidebar/Sidebar";
 export * from "./components/CardFrame/CardFrame";

@@ -20,7 +20,7 @@ export const AppCard = ({ item }: { item: AppCardItem }) => {
       <div
         className={`w-full rounded-lg flex flex-col gap-2 cursor-pointer relative border-border border bg-white h-[360px] overflow-hidden `}
       >
-        <div className="mt-1 py-4 px-8 z-10 w-full">
+        <div className="mt-1 py-4 px-6 md:px-8 z-10 w-full">
           <h4 className="text-lg font-medium">{item.title}</h4>
           <div className="text-textSecondary leading-tight mt-1">
             {item.description && item.description}

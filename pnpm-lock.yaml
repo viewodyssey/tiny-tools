@@ -181,6 +181,7 @@ importers:
     specifiers:
       '@radix-ui/react-dialog': ^1.0.4
       '@radix-ui/react-dropdown-menu': ^2.0.5
+      '@radix-ui/react-hover-card': ^1.0.6
       '@radix-ui/react-icons': ^1.3.0
       '@radix-ui/react-slot': ^1.0.2
       '@types/react': ^18.2.0
@@ -201,6 +202,7 @@ importers:
     dependencies:
       '@radix-ui/react-dialog': 1.0.4_kuusov2leqnirz6kvocub7ct4e
       '@radix-ui/react-dropdown-menu': 2.0.5_kuusov2leqnirz6kvocub7ct4e
+      '@radix-ui/react-hover-card': 1.0.6_kuusov2leqnirz6kvocub7ct4e
       '@radix-ui/react-icons': 1.3.0_react@18.2.0
       '@radix-ui/react-slot': 1.0.2_3pi6y6cylzraaxxtldk4o6b3zi
       class-variance-authority: 0.6.1
@@ -2184,6 +2186,35 @@ packages:
       '@radix-ui/react-compose-refs': 1.0.1_3pi6y6cylzraaxxtldk4o6b3zi
       '@radix-ui/react-primitive': 1.0.3_kuusov2leqnirz6kvocub7ct4e
       '@radix-ui/react-use-callback-ref': 1.0.1_3pi6y6cylzraaxxtldk4o6b3zi
+      '@types/react': 18.2.5
+      '@types/react-dom': 18.2.3
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    dev: false
+
+  /@radix-ui/react-hover-card/1.0.6_kuusov2leqnirz6kvocub7ct4e:
+    resolution: {integrity: sha512-2K3ToJuMk9wjwBOa+jdg2oPma+AmLdcEyTNsG/iC4BDVG3E0/mGCjbY8PEDSLxJcUi+nJi2QII+ec/4kWd88DA==}
+    peerDependencies:
+      '@types/react': '*'
+      '@types/react-dom': '*'
+      react: ^16.8 || ^17.0 || ^18.0
+      react-dom: ^16.8 || ^17.0 || ^18.0
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      '@types/react-dom':
+        optional: true
+    dependencies:
+      '@babel/runtime': 7.21.5
+      '@radix-ui/primitive': 1.0.1
+      '@radix-ui/react-compose-refs': 1.0.1_3pi6y6cylzraaxxtldk4o6b3zi
+      '@radix-ui/react-context': 1.0.1_3pi6y6cylzraaxxtldk4o6b3zi
+      '@radix-ui/react-dismissable-layer': 1.0.4_kuusov2leqnirz6kvocub7ct4e
+      '@radix-ui/react-popper': 1.1.2_kuusov2leqnirz6kvocub7ct4e
+      '@radix-ui/react-portal': 1.0.3_kuusov2leqnirz6kvocub7ct4e
+      '@radix-ui/react-presence': 1.0.1_kuusov2leqnirz6kvocub7ct4e
+      '@radix-ui/react-primitive': 1.0.3_kuusov2leqnirz6kvocub7ct4e
+      '@radix-ui/react-use-controllable-state': 1.0.1_3pi6y6cylzraaxxtldk4o6b3zi
       '@types/react': 18.2.5
       '@types/react-dom': 18.2.3
       react: 18.2.0

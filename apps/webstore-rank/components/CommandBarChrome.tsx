@@ -91,7 +91,7 @@ export const CommandBarChrome = () => {
                     const params = new URLSearchParams(searchParams);
                     params.set("keyword", value);
                     const newParams = params.toString();
-                    window.location.href = `/chrome-extension/?${newParams}`;
+                    window.location.href = `/chrome-extension/search?${newParams}`;
                     setOpen(false);
                   }
                 }}
