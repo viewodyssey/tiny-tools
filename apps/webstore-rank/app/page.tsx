@@ -75,8 +75,10 @@ export default function Page() {
                   <ShoppingBag size={16} />
                   <span className="font-normal">
                     View search trends for the extension with URL{" "}
-                    <Badge className="font-normal rounded-md px-2 max-w-[200px] truncate">
-                      youtube summary
+                    <Badge className="font-normal rounded-md px-2 max-w-[200px]">
+                      <div className="truncate">
+                        https://chrome.google.com/webstore/detail/grapevine-web-youtube-sum/ebdenogmnbeilddipibklpcjmioooddl
+                      </div>
                     </Badge>
                     .
                   </span>

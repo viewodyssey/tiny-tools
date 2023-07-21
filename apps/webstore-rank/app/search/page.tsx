@@ -31,7 +31,9 @@ export default function Page({
     if (keyword) {
       setSearchTerm(decodeURIComponent(String(keyword)));
     } else {
-      setSearchTerm("");
+      if (!window.location.pathname.includes("?keyword=")) {
+        setSearchTerm("");
+      }
     }
   }, [searchParams]);
 

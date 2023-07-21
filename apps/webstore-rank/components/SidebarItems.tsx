@@ -42,7 +42,7 @@ const SidebarItems = () => {
               href={item.href}
               className={`${buttonVariants({
                 variant: "ghost",
-              })} !justify-start px-2 ${
+              })} !justify-start !px-2 ${
                 isMounted &&
                 (pathname === BASEPATH
                   ? BASEPATH
