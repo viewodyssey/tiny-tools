@@ -15,6 +15,7 @@ import {
   Badge,
   Button,
 } from "ui";
+import { BASEPATH } from "../utils/misc";
 
 export const CommandBarChrome = () => {
   const { searchData, searchTerm, open, setOpen } = useDataContext();
@@ -24,8 +25,8 @@ export const CommandBarChrome = () => {
   const pathname = usePathname();
 
   useEffect(() => {
-    if (searchTerm.length <= 2 && !pathname.includes("/new")) {
-      window.location.href = "/chrome-extension/new";
+    if (searchTerm.length <= 2 && pathname !== BASEPATH) {
+      window.location.href = BASEPATH;
     }
   }, [searchTerm]);
 

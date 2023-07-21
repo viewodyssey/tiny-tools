@@ -40,7 +40,9 @@ export default function Page() {
                 className={`${buttonVariants({
                   variant: "ghost",
                 })} !justify-start items-center !px-4 !py-2 h-auto`}
-                href={`/?keyword=${encodeURIComponent("youtube summary")}`}
+                href={`/search?keyword=${encodeURIComponent(
+                  "youtube summary"
+                )}`}
               >
                 <div className="flex items-center gap-2">
                   <TextCursorInput size={16} />
@@ -57,7 +59,9 @@ export default function Page() {
                 className={`${buttonVariants({
                   variant: "ghost",
                 })} !justify-start items-center !px-4 !py-2 h-auto`}
-                href={`/?keyword=${encodeURIComponent("youtube summary")}`}
+                href={`/search?keyword=${encodeURIComponent(
+                  "youtube summary"
+                )}`}
               >
                 <div className="flex items-center gap-2">
                   <ShoppingBag size={16} />
