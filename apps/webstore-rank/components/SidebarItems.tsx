@@ -1,9 +1,10 @@
-import { buttonVariants } from "ui";
+import { buttonVariants, Skeleton } from "ui";
 import { ShoppingBag, TextCursorInput } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
 import { BASEPATH } from "../utils/misc";
+import { useEffect, useState } from "react";
 
 const SIDEBAR_ITEMS = [
   {
@@ -25,6 +26,11 @@ const SIDEBAR_ITEMS = [
 
 const SidebarItems = () => {
   const pathname = usePathname();
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   return (
     <div className="mt-16">
@@ -37,6 +43,7 @@ const SidebarItems = () => {
               className={`${buttonVariants({
                 variant: "ghost",
               })} !justify-start px-2 ${
+                isMounted &&
                 (pathname === BASEPATH
                   ? BASEPATH
                   : pathname.replace(BASEPATH, "")

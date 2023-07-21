@@ -5,7 +5,7 @@ import { CommandBarChrome } from "@/components/CommandBarChrome";
 import SidebarItems from "@/components/SidebarItems";
 import { MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
-import { ShoppingBag, TextCursorInput } from "lucide-react";
+import { Chrome, ShoppingBag, TextCursorInput } from "lucide-react";
 
 export default function Page() {
   const { setOpen } = useDataContext();
@@ -17,8 +17,16 @@ export default function Page() {
     >
       <CardFrame className="w-full h-full">
         <div className="flex gap-8 flex-col items-center justify-center gap-4 w-full h-full">
+          <div className="flex gap-2">
+            <div className="p-3 rounded-md border border-gray-200 shadow">
+              <Chrome size={24} className="text-gray-300" />
+            </div>
+            <div className="p-3 rounded-md border border-gray-200 shadow">
+              <ShoppingBag size={24} className="text-gray-300" />
+            </div>
+          </div>
           <h2 className="font-medium text-[40px] leading-[40px] text-center max-w-[480px]">
-            View trends for any search term or extension.
+            View search trends for the Chrome Web Store.
           </h2>
           <div className="w-full md:w-[420px]">
             <Button

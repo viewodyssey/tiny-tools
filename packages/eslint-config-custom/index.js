@@ -3,6 +3,7 @@ module.exports = {
   rules: {
     "@next/next/no-html-link-for-pages": "off",
     "react-hooks/exhaustive-deps": "warn",
+    "react/react-in-jsx-scope": "off",
   },
   overrides: [
     {

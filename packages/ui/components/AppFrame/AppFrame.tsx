@@ -8,12 +8,14 @@ interface AppFrameProps {
   sidebarChildren?: React.ReactNode;
   topbarChildren?: React.ReactNode;
   children?: React.ReactNode;
+  sidebarUrl?: string;
 }
 
 export const AppFrame = ({
   children,
   sidebarChildren,
   topbarChildren,
+  sidebarUrl,
 }: AppFrameProps) => {
   const [isVisible, setVisible] = useState(true);
 
@@ -31,7 +33,9 @@ export const AppFrame = ({
 
   return (
     <div className="w-full max-w-screen h-screen flex">
-      {isVisible && <Sidebar>{sidebarChildren}</Sidebar>}
+      {isVisible && (
+        <Sidebar sidebarUrl={sidebarUrl}>{sidebarChildren}</Sidebar>
+      )}
       <div
         className={`h-full w-full flex flex-col ${
           isVisible ? `md:max-w-[calc(100%-240px)]` : `md:max-w-full`
