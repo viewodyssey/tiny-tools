@@ -25,6 +25,7 @@ export const CommandBarChrome = () => {
   const pathname = usePathname();
 
   useEffect(() => {
+    console.log(searchTerm);
     if (searchTerm.length <= 2 && pathname !== BASEPATH) {
       window.location.href = BASEPATH;
     }
