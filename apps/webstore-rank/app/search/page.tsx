@@ -24,7 +24,7 @@ export default function Page() {
   const searchParams = useSearchParams();
 
   useEffect(() => {
-    const keyword = searchParams["keyword"];
+    const keyword = searchParams.get("keyword");
     console.log(searchParams, keyword);
     if (keyword) {
       setSearchTerm(decodeURIComponent(String(keyword)));
