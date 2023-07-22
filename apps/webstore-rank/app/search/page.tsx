@@ -9,12 +9,9 @@ import TopResultsTable from "@/components/TopResultsTable";
 import { CommandBarChrome } from "@/components/CommandBarChrome";
 import { ChartFilterMenu } from "@/components/ChartFilterMenu";
 import SidebarItems from "@/components/SidebarItems";
+import { useSearchParams } from "next/navigation";
 
-export default function Page({
-  searchParams,
-}: {
-  searchParams?: { [key: string]: string | string[] | undefined };
-}) {
+export default function Page() {
   const {
     searchData,
     setSearchData,
@@ -24,6 +21,7 @@ export default function Page({
     loading,
   } = useDataContext();
   const [itemsData, setItemsData] = useState([]);
+  const searchParams = useSearchParams();
 
   useEffect(() => {
     const keyword = searchParams["keyword"];
