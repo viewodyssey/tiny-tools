@@ -25,14 +25,10 @@ export default function Page() {
 
   useEffect(() => {
     const keyword = searchParams.get("keyword");
-    console.log(searchParams, keyword);
     if (keyword) {
       setSearchTerm(decodeURIComponent(String(keyword)));
     } else {
-      if (
-        !window.location.pathname.includes("?keyword=") &&
-        searchParams != null
-      ) {
+      if (!window.location.pathname.includes("?keyword=")) {
         setSearchTerm("");
       }
     }
