@@ -16,8 +16,8 @@ jobs:
       - name: Check out Git repository
         uses: actions/checkout@v3
 
-      - name: Install PNPM
-      - uses: pnpm/action-setup@v2
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
         with:
           version: 8
           run_install: |
