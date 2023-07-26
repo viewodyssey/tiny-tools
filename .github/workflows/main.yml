@@ -15,17 +15,17 @@ jobs:
     steps:
       - name: Check out Git repository
         uses: actions/checkout@v3
+        
+      - name: Set up Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16
 
       - name: Install pnpm
         uses: pnpm/action-setup@v2
         with:
           version: 8
           run_install: true
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v1
-        with:
-          node-version: 16
 
       # ESLint and Prettier must be in `package.json`
       - name: Install Node.js dependencies
