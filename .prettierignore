@@ -4,8 +4,10 @@ data
 dist
 .next
 .vscode
+.github
 node_modules
 **/tsconfig.json
 **/.eslintrc.js
 turbo
 pnpm-lock.yaml
+pnpm-workspace.yaml
