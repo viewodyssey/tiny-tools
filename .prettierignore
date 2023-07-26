@@ -3,6 +3,7 @@ build
 data
 dist
 .next
+.vscode
 node_modules
 **/tsconfig.json
 **/.eslintrc.js
