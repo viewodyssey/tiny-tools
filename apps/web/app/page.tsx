@@ -1,5 +1,6 @@
 import AppSection from "@/components/AppSection";
 import LandingSection from "@/components/LandingSection";
+import CommunitySection from "../components/CommunitySection";
 import Navbar from "../components/Navbar";
 
 export default function Page() {
@@ -10,6 +11,7 @@ export default function Page() {
         <div className="w-full max-w-[1000px]">
           <LandingSection />
           <AppSection />
+          <CommunitySection />
         </div>
       </div>
     </div>
