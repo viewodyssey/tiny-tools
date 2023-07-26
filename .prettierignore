@@ -2,7 +2,9 @@
 build
 data
 dist
+.next
 node_modules
 **/tsconfig.json
 **/.eslintrc.js
+turbo
 pnpm-lock.yaml

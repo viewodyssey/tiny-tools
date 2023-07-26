@@ -1,11 +1,11 @@
 {
-  "name": "config",
-  "version": "0.0.0",
-  "main": "index.js",
-  "devDependencies": {
-    "tailwindcss": "^3.3.2"
-  },
-  "publishConfig": {
-    "access": "public"
-  }
+	"name": "config",
+	"version": "0.0.0",
+	"main": "index.js",
+	"devDependencies": {
+		"tailwindcss": "^3.3.2"
+	},
+	"publishConfig": {
+		"access": "public"
+	}
 }

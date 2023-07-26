@@ -1,26 +1,26 @@
 {
-  "private": true,
-  "scripts": {
-    "build": "turbo run build",
-    "dev": "turbo run dev",
-    "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "ui:add": "pnpm --filter ui ui:add",
-    "ci": "pnpm install"
-  },
-  "devDependencies": {
-    "@turbo/gen": "^1.9.7",
-    "eslint": "^7.32.0",
-    "eslint-config-custom": "workspace:*",
-    "prettier": "^2.5.1",
-    "turbo": "latest",
-    "typescript": "^4.5.2"
-  },
-  "packageManager": "pnpm@7.15.0",
-  "name": "tiny-tools",
-  "dependencies": {
-    "@typescript-eslint/eslint-plugin": "^6.1.0",
-    "@typescript-eslint/parser": "^6.1.0",
-    "eslint-plugin-react": "^7.32.2"
-  }
+	"private": true,
+	"scripts": {
+		"build": "turbo run build",
+		"dev": "turbo run dev",
+		"lint": "turbo run lint",
+		"format": "prettier --write \"**/*.{ts,tsx,js,json}\"",
+		"ui:add": "pnpm --filter ui ui:add",
+		"ci": "pnpm install"
+	},
+	"devDependencies": {
+		"@turbo/gen": "^1.9.7",
+		"eslint": "^7.32.0",
+		"eslint-config-custom": "workspace:*",
+		"prettier": "^2.5.1",
+		"turbo": "latest",
+		"typescript": "^4.5.2"
+	},
+	"packageManager": "pnpm@7.15.0",
+	"name": "tiny-tools",
+	"dependencies": {
+		"@typescript-eslint/eslint-plugin": "^6.1.0",
+		"@typescript-eslint/parser": "^6.1.0",
+		"eslint-plugin-react": "^7.32.2"
+	}
 }

@@ -1,21 +1,21 @@
 {
-  "trailingSlash": false,
-  "rewrites": [
-    {
-      "source": "/chrome-extension",
-      "destination": "https://daskalos.vercel.app/chrome-extension"
-    },
-    {
-      "source": "/chrome-extension/:match*",
-      "destination": "https://daskalos.vercel.app/chrome-extension/:match*"
-    },
-    {
-      "source": "/",
-      "destination": "https://tinytools-web.vercel.app"
-    },
-    {
-      "source": "/:match*",
-      "destination": "https://tinytools-web.vercel.app/:match*"
-    }
-  ]
+	"trailingSlash": false,
+	"rewrites": [
+		{
+			"source": "/chrome-extension",
+			"destination": "https://daskalos.vercel.app/chrome-extension"
+		},
+		{
+			"source": "/chrome-extension/:match*",
+			"destination": "https://daskalos.vercel.app/chrome-extension/:match*"
+		},
+		{
+			"source": "/",
+			"destination": "https://tinytools-web.vercel.app"
+		},
+		{
+			"source": "/:match*",
+			"destination": "https://tinytools-web.vercel.app/:match*"
+		}
+	]
 }
