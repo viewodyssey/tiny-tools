@@ -24,13 +24,11 @@ jobs:
       - name: Install pnpm
         uses: pnpm/action-setup@v2
         with:
-          version: 8
-          run_install: true
-            - args: [--no-frozen-lockfile]
+          version: 7
+          run_install: false
 
-      # ESLint and Prettier must be in `package.json`
-      - name: Install Node.js dependencies
-        run: npm ci
+      - name: Install dependencies
+        run: pnpm ci
 
       - name: Run linters
         uses: wearerequired/lint-action@v2
