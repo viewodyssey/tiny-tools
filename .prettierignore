@@ -1,0 +1,8 @@
+*.md
+build
+data
+dist
+node_modules
+**/tsconfig.json
+**/.eslintrc.js
+pnpm-lock.yaml
