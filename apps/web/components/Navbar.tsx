@@ -6,7 +6,7 @@ const Navbar = () => {
 	return (
 		<nav className="w-full bg-transparent flex justify-center pt-3 sticky top-0 z-20">
 			<div className="flex border-border border rounded-full bg-card py-1.5 px-4 items-center gap-4 shadow-sm">
-				<img src={OdysseyIcon.src} className="w-4 h-4" />
+				<img src={OdysseyIcon.src} className="w-4 h-4" alt="" />
 				<div className="flex gap-1">
 					<Link
 						href={'/tools'}

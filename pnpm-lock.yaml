@@ -166,6 +166,7 @@ importers:
       eslint-config-prettier: ^8.3.0
       eslint-config-turbo: ^1.9.3
       eslint-plugin-react: 7.32.2
+      next: ^13.4.1
     dependencies:
       '@typescript-eslint/eslint-plugin': 6.1.0_nhskczrc3klqeizmykqbeixubm
       '@typescript-eslint/parser': 6.1.0_iacogk7kkaymxepzhgcbytyi7q
@@ -173,6 +174,7 @@ importers:
       eslint-config-prettier: 8.8.0
       eslint-config-turbo: 1.9.3_eslint@8.39.0
       eslint-plugin-react: 7.32.2_eslint@8.39.0
+      next: 13.4.1_biqbaboplfbrettd7655fr4n2y
 
   packages/tsconfig:
     specifiers: {}
@@ -3818,7 +3820,6 @@ packages:
 
   /caniuse-lite/1.0.30001507:
     resolution: {integrity: sha512-SFpUDoSLCaE5XYL2jfqe9ova/pbQHEmbheDf5r4diNwbAgR3qxM9NQtfsiSscjqoya5K7kFcHPUQ+VsUkIJR4A==}
-    dev: true
 
   /chalk/2.4.2:
     resolution: {integrity: sha512-Mti+f9lpJNcwF4tWV8/OrTTtF1gZi+f8FqlyAdouralcFWFQWF2+NgCHShjkCb+IFBLq9buZwE1xckQU4peSuQ==}
@@ -6025,7 +6026,7 @@ packages:
       '@next/env': 13.4.1
       '@swc/helpers': 0.5.1
       busboy: 1.6.0
-      caniuse-lite: 1.0.30001482
+      caniuse-lite: 1.0.30001507
       postcss: 8.4.14
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0

@@ -2,7 +2,7 @@ module.exports = {
 	extends: ['next', 'turbo', 'prettier'],
 	rules: {
 		'@next/next/no-html-link-for-pages': 'off',
-		'react-hooks/exhaustive-deps': 'warn',
+		'@next/next/no-img-element': 'off',
 		'react/react-in-jsx-scope': 'off',
 	},
 	overrides: [
