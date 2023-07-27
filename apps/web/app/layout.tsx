@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
 import Script from 'next/script'
+import { Toaster } from 'ui'
 import 'ui/styles.css'
 import Wrapper from '../components/Wrapper'
 
@@ -40,6 +41,7 @@ export default function RootLayout({
 			/>
 			<body>
 				<Wrapper>{children}</Wrapper>
+				<Toaster />
 			</body>
 		</html>
 	)
