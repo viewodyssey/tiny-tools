@@ -10,6 +10,14 @@
 			"destination": "https://daskalos.vercel.app/chrome-extension/:match*"
 		},
 		{
+			"source": "/hypnos",
+			"destination": "https://tiny-tools-hypnos.vercel.app/hypnos"
+		},
+		{
+			"source": "/hypnos/:match*",
+			"destination": "https://tiny-tools-hypnos.vercel.app/hypnos/:match*"
+		},
+		{
 			"source": "/",
 			"destination": "https://tinytools-web.vercel.app"
 		},
