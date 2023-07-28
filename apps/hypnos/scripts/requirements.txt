@@ -1,0 +1,4 @@
+selenium
+pymongo
+Flask==2.1.2
+python-dotenv
