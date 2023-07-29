@@ -109,7 +109,23 @@ export const CommandBarChrome = () => {
 									{value || 'Enter any search term...'}
 								</span>
 							</CommandItem>
-							<CommandItem value="extension">
+							<CommandItem
+								value="extension"
+								onSelect={() => {
+									if (value.includes('/')) {
+										const splitUrl = value.split('/')
+										const itemId =
+											splitUrl[splitUrl.length - 1]
+										const params = new URLSearchParams(
+											searchParams,
+										)
+										params.set('id', itemId)
+										const newParams = params.toString()
+										window.location.href = `/chrome-extension/item?${newParams}`
+										setOpen(false)
+									}
+								}}
+							>
 								<ShoppingBag className="mr-2 h-4 w-4" />
 								<Badge className="mr-2 font-normal">
 									Extension

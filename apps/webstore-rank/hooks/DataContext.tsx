@@ -36,6 +36,8 @@ interface DataContext {
 	setFilters: (value: FilterData) => void
 	searchTerm: string
 	setSearchTerm: (value: string) => void
+	itemId: string
+	setItemId: (value: string) => void
 	loading: boolean
 	setLoading: (value: boolean) => void
 	open: boolean
@@ -49,6 +51,7 @@ export const DataWrapper = ({ children }: PropsWithChildren) => {
 	const [searchData, setSearchData] = useState<SearchData>(DEFAULT_SEARCH)
 	const [filters, setFilters] = useState<FilterData>(DEFAULT_SETTINGS)
 	const [searchTerm, setSearchTerm] = useState(DEFAULT_SEARCH_TERM)
+	const [itemId, setItemId] = useState(DEFAULT_SEARCH_TERM)
 	const [loading, setLoading] = useState(false)
 	const [open, setOpen] = useState(false)
 
@@ -59,6 +62,8 @@ export const DataWrapper = ({ children }: PropsWithChildren) => {
 				setSearchData,
 				searchTerm,
 				setSearchTerm,
+				itemId,
+				setItemId,
 				loading,
 				setLoading,
 				filters,

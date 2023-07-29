@@ -2,12 +2,7 @@ import webstore from 'chrome-webstore'
 import { Db } from 'mongodb'
 
 const findItemIds = (db: Db, expr: any) => {
-	return db
-		.collection('items')
-		.find(expr, {
-			id: 1,
-		} as never)
-		.toArray()
+	return db.collection('items').aggregate(expr).toArray()
 }
 
 const findItemIdsMatchingObjects = (db: Db, expr: any) => {
@@ -38,21 +33,35 @@ export const updateSearchTerm = async (db: Db, id: string) => {
 		users: Number(item.users.replaceAll(',', '').replaceAll('+', '')),
 		rating: item.rating,
 	}))
-	const isAlreadyUpdatedToday = await findItemIds(db, {
-		$expr: {
-			$and: [
-				{ $in: ['id', itemIds] },
-				{ $eq: [{ $arrayElemAt: ['$users.date', -1] }, currentDate] },
-				{ $eq: [{ $arrayElemAt: ['$rating.date', -1] }, currentDate] },
-			],
+	const isAlreadyUpdatedToday = await findItemIds(db, [
+		{
+			$match: {
+				id: { $in: itemIds },
+				$expr: {
+					$and: [
+						{
+							$eq: [
+								{ $arrayElemAt: ['$users.date', -2] },
+								currentDate,
+							],
+						},
+						{
+							$eq: [
+								{ $arrayElemAt: ['$rating.date', -1] },
+								currentDate,
+							],
+						},
+					],
+				},
+			},
 		},
-	})
+	])
 
 	const noUserChange = await findItemIdsMatchingObjects(
 		db,
 		itemObjects.map((item) => ({
 			$and: [
-				{ $eq: ['id', item.id] },
+				{ $eq: ['$id', item.id] },
 				{ $eq: [{ $arrayElemAt: ['$users.users', -1] }, item.users] },
 			],
 		})),
@@ -61,7 +70,7 @@ export const updateSearchTerm = async (db: Db, id: string) => {
 		db,
 		itemObjects.map((item) => ({
 			$and: [
-				{ $eq: ['id', item.id] },
+				{ $eq: ['$id', item.id] },
 				{
 					$eq: [
 						{ $arrayElemAt: ['$rating.rating', -1] },
