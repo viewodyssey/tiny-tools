@@ -27,18 +27,28 @@ const HeartRate = ({ data }: HeartRateProps) => {
 	return (
 		<LineChart
 			data={parseDataToLineChart(data)}
+			className="!h-[200px]"
 			chartProps={{
-				colors: ['#457b9d', '#a8dadc'],
 				xScale: {
 					type: 'time',
 					precision: 'millisecond',
 				},
-				axisBottom: {
-					format: '%H:%M',
-					legend: 'Time',
-					legendOffset: -12,
-					// tickValues: 'every 15 minutes',
+				yScale: {
+					type: 'linear',
+					min:
+						Math.min(...data.items.filter((n: any) => n != null)) -
+						5,
 				},
+				axisBottom: {
+					format: '%I %p',
+					tickValues: 'every 2 hour',
+					tickSize: 0,
+				},
+				colors: ['#e63946'],
+				axisLeft: {
+					tickSize: 0,
+				},
+				enablePoints: false,
 			}}
 		/>
 	)

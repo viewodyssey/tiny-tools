@@ -13,7 +13,7 @@ const HeartRateTrend = ({ data, chartProps }: HeartRateProps) => {
 				id: 'Main',
 				data: data.map((d) => {
 					return {
-						x: d.bedtime_start.split('T')[0],
+						x: new Date(d.bedtime_start),
 						y: d.value || null,
 					}
 				}),
@@ -26,11 +26,9 @@ const HeartRateTrend = ({ data, chartProps }: HeartRateProps) => {
 		<LineChart
 			data={parseDataToLineChart(data)}
 			chartProps={{
-				colors: ['#457b9d', '#a8dadc'],
 				xScale: {
-					format: '%Y-%m-%d',
 					type: 'time',
-					precision: 'day',
+					precision: 'millisecond',
 				},
 				axisBottom: {
 					format: '%m-%d',

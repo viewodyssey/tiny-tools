@@ -1,23 +1,22 @@
 'use client'
-import { LineSvgProps } from '@nivo/line'
 import dynamic from 'next/dynamic'
 import { Skeleton } from 'ui'
 
-const ResponsiveLine = dynamic(
-	() => import('@nivo/line').then((m) => m.ResponsiveLine),
+const ResponsiveStream = dynamic(
+	() => import('@nivo/stream').then((m) => m.ResponsiveStream),
 	{
 		ssr: false,
 	},
 )
 
-interface LineProps {
+interface StreamProps {
 	data: any[]
 	className?: string
-	chartProps?: Partial<LineSvgProps>
+	chartProps?: any
 	loading?: boolean
 }
 
-const LineChart = ({ data, className, chartProps, loading }: LineProps) => {
+const StreamChart = ({ data, className, chartProps, loading }: StreamProps) => {
 	return (
 		<div className={`w-full h-[300px] ${className}`}>
 			{loading ? (
@@ -25,18 +24,12 @@ const LineChart = ({ data, className, chartProps, loading }: LineProps) => {
 					<Skeleton className="h-full w-full" />
 				</div>
 			) : (
-				<ResponsiveLine
+				<ResponsiveStream
 					data={data}
-					useMesh={true}
-					colors={[
-						'#457b9d',
-						'#1d3557',
-						'#a8dadc',
-						'#e63946',
-						'#f1faee',
-					]}
-					curve="catmullRom"
+					colors={['#457b9d', '#1d3557', '#a8dadc', '#f1faee']}
 					enableGridX={false}
+					curve="linear"
+					offsetType="none"
 					margin={{ top: 20, right: 10, bottom: 40, left: 30 }}
 					{...chartProps}
 				/>
@@ -45,4 +38,4 @@ const LineChart = ({ data, className, chartProps, loading }: LineProps) => {
 	)
 }
 
-export default LineChart
+export default StreamChart

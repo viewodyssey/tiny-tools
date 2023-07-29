@@ -26,8 +26,28 @@ export * from './components/ui/use-toast'
 export * from './components/ui/toaster'
 export * from './components/ui/input'
 export * from './components/ui/badge'
-export * from './components/ui/hover-card'
-export * from './components/ui/dropdown-menu'
+export {
+	HoverCard,
+	HoverCardTrigger,
+	HoverCardContent,
+} from './components/ui/hover-card'
+export {
+	DropdownMenu,
+	DropdownMenuTrigger,
+	DropdownMenuContent,
+	DropdownMenuItem,
+	DropdownMenuCheckboxItem,
+	DropdownMenuRadioItem,
+	DropdownMenuLabel,
+	DropdownMenuSeparator,
+	DropdownMenuShortcut,
+	DropdownMenuGroup,
+	DropdownMenuPortal,
+	DropdownMenuSub,
+	DropdownMenuSubContent,
+	DropdownMenuSubTrigger,
+	DropdownMenuRadioGroup,
+} from './components/ui/dropdown-menu'
 export * from './components/Sidebar/Sidebar'
 export * from './components/CardFrame/CardFrame'
 export { AppFrame } from './components/AppFrame/AppFrame'

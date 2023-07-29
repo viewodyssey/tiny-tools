@@ -23,12 +23,10 @@ chrome_options.add_argument("window-size=1440,900")
 chrome_options.add_experimental_option("prefs", {
         "download.default_directory": downloadpath
 })
-driver = webdriver.Chrome(options=chrome_options)
 
 load_dotenv()
 email = os.environ['EMAIL']
 password = os.environ['PASSWORD']
-wait = WebDriverWait(driver, 5)
 
 def downloaded_file(variable):
     if (".crdownload" in variable):
@@ -37,6 +35,8 @@ def downloaded_file(variable):
         return True
 
 def download_data_from_cloud():
+    driver = webdriver.Chrome(options=chrome_options)
+    wait = WebDriverWait(driver, 15)
     data = {}
     try:
         for f in os.listdir(downloadpath):
@@ -101,4 +101,4 @@ def home():
     return scrapedData
 
 if __name__ == '__main__':
-    app.run()
+    app.run(port=8888)

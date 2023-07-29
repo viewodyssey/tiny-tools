@@ -5,6 +5,7 @@ interface CardFrameProps {
 	className?: string
 	titleClassName?: string
 	children?: React.ReactNode
+	header?: React.ReactNode
 	controls?: React.ReactNode
 }
 export const CardFrame = ({
@@ -12,6 +13,7 @@ export const CardFrame = ({
 	children,
 	controls,
 	className,
+	header,
 	titleClassName,
 }: CardFrameProps) => {
 	return (
@@ -21,10 +23,13 @@ export const CardFrame = ({
 				className,
 			)}
 		>
-			<div className="flex items-center justify-between">
-				{title && <h4 className={titleClassName}>{title}</h4>}
-				{controls && <div>{controls}</div>}
-			</div>
+			{(title || header || controls) && (
+				<div className="flex items-center justify-between">
+					{title && <h4 className={titleClassName}>{title}</h4>}
+					{header && header}
+					{controls && <div>{controls}</div>}
+				</div>
+			)}
 			{children}
 		</div>
 	)
