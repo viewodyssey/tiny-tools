@@ -33,6 +33,7 @@ const UsersChart = ({ data }: UsersChartProps) => {
 					legend: 'Rank',
 					legendOffset: 32,
 					legendPosition: 'middle',
+					tickSize: 0,
 				},
 				colors: ['#457b9d', '#a8dadc'],
 				tooltip: ({ node }) => {

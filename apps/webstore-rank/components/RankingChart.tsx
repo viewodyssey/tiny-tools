@@ -164,6 +164,7 @@ const RankingChart = () => {
 						pointBorderWidth={3}
 						activePointBorderWidth={3}
 						pointBorderColor={{ from: 'serie.color' }}
+						enableGridY={false}
 						{...props}
 					/>
 				)}

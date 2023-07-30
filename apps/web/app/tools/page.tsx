@@ -29,19 +29,19 @@ const APPS: AppItem[] = [
 		),
 		color: 'bg-sky-100',
 	},
-	{
-		title: 'LinkedIn Alumni',
-		description:
-			'Check-in on current and past members of organizatios, on steroids. ',
-		href: '/chrome-extension',
-		icon: (
-			<div className="w-full h-full flex items-center justify-center gap-2">
-				<Linkedin size={36} color="#3b82f6" />
-				<Globe size={36} color="#3b82f6" />
-			</div>
-		),
-		color: 'bg-blue-100',
-	},
+	// {
+	// 	title: 'LinkedIn Alumni',
+	// 	description:
+	// 		'Check-in on current and past members of organizatios, on steroids. ',
+	// 	href: '/chrome-extension',
+	// 	icon: (
+	// 		<div className="w-full h-full flex items-center justify-center gap-2">
+	// 			<Linkedin size={36} color="#3b82f6" />
+	// 			<Globe size={36} color="#3b82f6" />
+	// 		</div>
+	// 	),
+	// 	color: 'bg-blue-100',
+	// },
 ]
 
 export default function Page() {

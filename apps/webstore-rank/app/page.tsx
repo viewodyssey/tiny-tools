@@ -67,8 +67,8 @@ export default function Page() {
 								className={`${buttonVariants({
 									variant: 'ghost',
 								})} !justify-start items-center !px-4 !py-2 h-auto`}
-								href={`/search?keyword=${encodeURIComponent(
-									'youtube summary',
+								href={`/item?id=${encodeURIComponent(
+									'ebdenogmnbeilddipibklpcjmioooddl',
 								)}`}
 							>
 								<div className="flex items-center gap-2">

@@ -1,4 +1,5 @@
 import OdysseyIcon from '@/assets/odyssey_icon.svg'
+import { GitHubLogoIcon } from '@radix-ui/react-icons'
 import Link from 'next/link'
 import { buttonVariants } from 'ui'
 
@@ -14,7 +15,7 @@ const Navbar = () => {
 							variant: 'ghost',
 						})} !h-auto !px-3 !py-1.5 m-[1px] !rounded-full !text-gray-500 !font-normal hover:text-gray-700 hover:border-border hover:border hover:m-0`}
 					>
-						Tiny Tools
+						Tools
 					</Link>
 					<Link
 						target="_blank"
@@ -34,7 +35,10 @@ const Navbar = () => {
 							variant: 'ghost',
 						})} !h-auto !px-3 !py-1.5 m-[1px] !rounded-full !text-gray-500 !font-normal hover:text-gray-700 hover:border-border hover:border hover:m-0`}
 					>
-						Contribute on Github
+						<span className="hidden md:inline">
+							Contribute on Github
+						</span>
+						<GitHubLogoIcon className="w-4 h-4 md:hidden" />
 					</Link>
 				</div>
 			</div>

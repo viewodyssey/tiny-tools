@@ -17,6 +17,25 @@ interface LineProps {
 	loading?: boolean
 }
 
+const theme = {
+	axis: {
+		ticks: {
+			line: {
+				stroke: '#ccc',
+			},
+			text: {
+				fill: '#888',
+			},
+		},
+	},
+	grid: {
+		line: {
+			stroke: '#ccc',
+			strokeWidth: 1,
+		},
+	},
+}
+
 const LineChart = ({ data, className, chartProps, loading }: LineProps) => {
 	return (
 		<div className={`w-full h-[300px] ${className}`}>
@@ -35,8 +54,9 @@ const LineChart = ({ data, className, chartProps, loading }: LineProps) => {
 						'#e63946',
 						'#f1faee',
 					]}
-					curve="catmullRom"
 					enableGridX={false}
+					gridYValues={[0]}
+					theme={theme}
 					margin={{ top: 20, right: 10, bottom: 40, left: 30 }}
 					{...chartProps}
 				/>

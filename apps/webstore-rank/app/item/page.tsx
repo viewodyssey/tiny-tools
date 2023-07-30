@@ -4,7 +4,7 @@ import { CommandBarChrome } from '@/components/CommandBarChrome'
 import SidebarItems from '@/components/SidebarItems'
 import { Hourglass } from 'lucide-react'
 import { DEFAULT_SEARCH_TERM, useDataContext } from '../../hooks/DataContext'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import UsersTrend from '../../components/UsersTrend'
 import RatingTrend from '../../components/RatingTrend'
@@ -41,6 +41,16 @@ export default function Page() {
 		}
 	}, [itemId])
 
+	const mostRecentUserData = useMemo(() => {
+		const items = itemData.users || []
+		return items[items.length - 1] || {}
+	}, [itemData])
+
+	const mostRecentRatingData = useMemo(() => {
+		const items = itemData.rating || []
+		return items[items.length - 1] || {}
+	}, [itemData])
+
 	return (
 		<AppFrame
 			sidebarChildren={<SidebarItems />}
@@ -61,14 +71,34 @@ export default function Page() {
 			<div className="flex flex-col gap-4 w-full">
 				<div className="flex flex-col md:flex-row gap-4 w-full relative">
 					<div className="md:w-[calc(50%-0.5rem)] flex-grow-0 ">
-						<CardFrame title="Users">
+						<CardFrame
+							header={
+								<div>
+									<h4>Users</h4>
+									<div className="text-3xl font-semibold">
+										{mostRecentUserData?.users}
+									</div>
+								</div>
+							}
+						>
 							<div className="pt-4 h-full">
 								<UsersTrend data={itemData.users || []} />
 							</div>
 						</CardFrame>
 					</div>
 					<div className="md:w-[calc(50%-0.5rem)] flex-grow-0">
-						<CardFrame title="Rating">
+						<CardFrame
+							header={
+								<div>
+									<h4>Rating</h4>
+									<div className="text-3xl font-semibold">
+										{mostRecentRatingData?.rating?.average.toFixed(
+											2,
+										)}
+									</div>
+								</div>
+							}
+						>
 							<div className="pt-4 h-full">
 								<RatingTrend data={itemData.rating || []} />
 							</div>

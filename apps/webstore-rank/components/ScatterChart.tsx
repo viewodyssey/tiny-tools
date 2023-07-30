@@ -27,7 +27,13 @@ const ScatterChart = ({ data, chartProps, loading }: ScatterProps) => {
 					<Skeleton className="h-full w-full" />
 				</div>
 			) : (
-				<ResponsiveScatterPlot data={data} {...props} {...chartProps} />
+				<ResponsiveScatterPlot
+					data={data}
+					enableGridX={false}
+					axisLeft={{ tickSize: 0 }}
+					{...props}
+					{...chartProps}
+				/>
 			)}
 		</div>
 	)

@@ -18,18 +18,23 @@ import {
 import { BASEPATH } from '../utils/misc'
 
 export const CommandBarChrome = () => {
-	const { searchData, searchTerm, open, setOpen } = useDataContext()
+	const { searchData, searchTerm, itemId, open, setOpen } = useDataContext()
 	const [value, setValue] = useState('')
 	const searchParams = useSearchParams()
 	const router = useRouter()
 	const pathname = usePathname()
 
 	useEffect(() => {
-		console.log(searchTerm)
 		if (searchTerm.length <= 2 && pathname !== BASEPATH) {
 			window.location.href = BASEPATH
 		}
 	}, [searchTerm])
+
+	useEffect(() => {
+		if (itemId.length <= 2 && pathname !== BASEPATH) {
+			window.location.href = BASEPATH
+		}
+	}, [itemId])
 
 	return (
 		<>
@@ -47,12 +52,8 @@ export const CommandBarChrome = () => {
 								<span className="text-primary">{`${searchData.keyword}`}</span>
 							</div>
 						) : (
-							'Type a command or search...'
+							'Type something...'
 						)}
-						{/* <Badge
-            variant={"outline"}
-            className="ml-2 text-gray-400"
-          >{`⌘]`}</Badge> */}
 					</Button>
 				</div>
 				<CommandDialog
@@ -80,7 +81,7 @@ export const CommandBarChrome = () => {
 					}}
 				>
 					<CommandInput
-						placeholder="Type a command or search..."
+						placeholder="Type something to search..."
 						value={value}
 						onValueChange={setValue}
 					/>
@@ -131,8 +132,7 @@ export const CommandBarChrome = () => {
 									Extension
 								</Badge>
 								<span>
-									{value ||
-										'Enter an Chrome extension URL...'}
+									{value || 'Enter a Chrome extension URL...'}
 								</span>
 							</CommandItem>
 						</CommandGroup>

@@ -46,7 +46,6 @@ export default function Page() {
 			).json()
 			setSearchData(res.searchData)
 			setItemsData(res.items)
-			console.log(res)
 			setLoading(false)
 		}
 		if (searchTerm.length > 2 && searchTerm !== DEFAULT_SEARCH_TERM) {
