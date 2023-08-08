@@ -26,6 +26,7 @@ import { useSearchParams } from 'next/navigation'
 import LoginModal from '../../components/LoginModal/LoginModal'
 import { addSegment } from '../../utils/service'
 import AppTopRight from '../../components/AppTopRight'
+import { Download, Loader2 } from 'lucide-react'
 
 export default function Page() {
 	const {
@@ -40,6 +41,7 @@ export default function Page() {
 	} = useDataContext()
 	const [itemsData, setItemsData] = useState([])
 	const searchParams = useSearchParams()
+	const [trackLoading, setTrackLoading] = useState(false)
 	const { toast } = useToast()
 
 	useEffect(() => {
@@ -73,6 +75,7 @@ export default function Page() {
 	}, [searchTerm, setSearchData, setLoading])
 
 	const trackKeyword = async () => {
+		setTrackLoading(true)
 		try {
 			const updatedUser = await addSegment({
 				accountId: userAccount.id,
@@ -83,6 +86,7 @@ export default function Page() {
 				description: `Now tracking '${searchTerm}'`,
 			})
 			setUserAccount(updatedUser)
+			setTrackLoading(false)
 		} catch (e) {
 			console.error(e)
 			toast({
@@ -90,6 +94,7 @@ export default function Page() {
 				description:
 					'There was a problem with your request. Please try again',
 			})
+			setTrackLoading(false)
 		}
 	}
 
@@ -114,11 +119,21 @@ export default function Page() {
 					<ChartFilterMenu />
 					{userAccount.id !== NO_USER.id &&
 					userAccount.id !== GUEST_USER.id ? (
-						<Button onClick={trackKeyword}>Track Keyword</Button>
+						<Button onClick={trackKeyword}>
+							{trackLoading ? (
+								<Loader2 className="mr-2 h-4 w-4 animate-spin" />
+							) : (
+								<Download className="mr-2 h-4 w-4" />
+							)}
+							Track Keyword
+						</Button>
 					) : (
 						<Dialog>
 							<DialogTrigger asChild>
-								<Button>Track Keyword</Button>
+								<Button>
+									<Download className="mr-2 h-4 w-4" />
+									Track Keyword
+								</Button>
 							</DialogTrigger>
 							<LoginModal />
 						</Dialog>

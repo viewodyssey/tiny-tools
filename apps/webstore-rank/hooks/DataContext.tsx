@@ -88,7 +88,7 @@ export const DataWrapper = ({ children }: PropsWithChildren) => {
 
 	useEffect(() => {
 		const getUser = async () => {
-			const userId = localStorage.getItem('id')
+			const userId = localStorage.getItem('idx')
 			if (userId) {
 				const userObject = await getAccount(userId)
 				setUserAccount(userObject)

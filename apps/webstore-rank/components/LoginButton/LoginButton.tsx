@@ -1,6 +1,8 @@
 import { H } from 'highlight.run'
 import jwtDecode from 'jwt-decode'
-import { useEffect } from 'react'
+import { Loader2 } from 'lucide-react'
+import { useEffect, useState } from 'react'
+import { Badge } from 'ui'
 import { useDataContext } from '../../hooks/DataContext'
 import { addAccount, getAccount } from '../../utils/service'
 
@@ -8,9 +10,11 @@ declare var google: any
 
 const LoginButton = ({ afterLogin, customId }: any) => {
 	const { setUserAccount } = useDataContext()
+	const [loginLoading, setLoginLoading] = useState(false)
 
 	useEffect(() => {
 		const signInCallback = async (response: any) => {
+			setLoginLoading(true)
 			const jwtToken = response.credential
 			const data: any = jwtDecode(jwtToken)
 			const account = await getAccount(data.sub)
@@ -32,6 +36,7 @@ const LoginButton = ({ afterLogin, customId }: any) => {
 				setUserAccount(account)
 				localStorage.setItem('id', account.id)
 			}
+			setLoginLoading(false)
 			if (afterLogin) {
 				afterLogin()
 			}
@@ -51,7 +56,12 @@ const LoginButton = ({ afterLogin, customId }: any) => {
 		}
 	}, [afterLogin, customId, setUserAccount])
 
-	return <div id={customId}></div>
+	return (
+		<div className="flex gap-2 items-center">
+			<div id={customId}></div>
+			{loginLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+		</div>
+	)
 }
 
 export default LoginButton
