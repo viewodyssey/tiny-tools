@@ -3,18 +3,7 @@ import { getSubstringOccurences } from '@/utils/findkeyword'
 import { ArrowUpRight } from 'lucide-react'
 import Link from 'next/link'
 import { useMemo } from 'react'
-import {
-	Button,
-	buttonVariants,
-	Skeleton,
-	Table,
-	TableBody,
-	TableCaption,
-	TableCell,
-	TableHead,
-	TableHeader,
-	TableRow,
-} from 'ui'
+import { buttonVariants, Skeleton } from 'ui'
 
 interface TopResultsTableProps {
 	data: any[]

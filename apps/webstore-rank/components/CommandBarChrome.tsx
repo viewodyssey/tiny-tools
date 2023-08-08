@@ -1,9 +1,9 @@
 'use-client'
-import { useDataContext } from '@/hooks/DataContext'
+import { DEFAULT_SEARCH_TERM, useDataContext } from '@/hooks/DataContext'
 import { MagnifyingGlassIcon } from '@radix-ui/react-icons'
 import { TextCursorInput, ShoppingBag } from 'lucide-react'
 
-import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import {
 	CommandDialog,
@@ -20,21 +20,19 @@ import { BASEPATH } from '../utils/misc'
 export const CommandBarChrome = () => {
 	const { searchData, searchTerm, itemId, open, setOpen } = useDataContext()
 	const [value, setValue] = useState('')
-	const searchParams = useSearchParams()
-	const router = useRouter()
 	const pathname = usePathname()
 
 	useEffect(() => {
 		if (searchTerm.length <= 2 && pathname !== BASEPATH) {
 			window.location.href = BASEPATH
 		}
-	}, [searchTerm])
+	}, [searchTerm, pathname])
 
 	useEffect(() => {
 		if (itemId.length <= 2 && pathname !== BASEPATH) {
 			window.location.href = BASEPATH
 		}
-	}, [itemId])
+	}, [itemId, pathname])
 
 	return (
 		<>
@@ -50,6 +48,11 @@ export const CommandBarChrome = () => {
 							<div className="flex items-center">
 								<Badge className="mr-2 px-2 font-medium">{`keyword`}</Badge>
 								<span className="text-primary">{`${searchData.keyword}`}</span>
+							</div>
+						) : itemId !== DEFAULT_SEARCH_TERM ? (
+							<div className="flex items-center">
+								<Badge className="mr-2 px-2 font-medium">{`id`}</Badge>
+								<span className="text-primary">{`${itemId}`}</span>
 							</div>
 						) : (
 							'Type something...'
@@ -92,9 +95,7 @@ export const CommandBarChrome = () => {
 								value="keyword"
 								onSelect={() => {
 									if (value.length > 2) {
-										const params = new URLSearchParams(
-											searchParams,
-										)
+										const params = new URLSearchParams()
 										params.set('keyword', value)
 										const newParams = params.toString()
 										window.location.href = `/chrome-extension/search?${newParams}`
@@ -117,9 +118,7 @@ export const CommandBarChrome = () => {
 										const splitUrl = value.split('/')
 										const itemId =
 											splitUrl[splitUrl.length - 1]
-										const params = new URLSearchParams(
-											searchParams,
-										)
+										const params = new URLSearchParams()
 										params.set('id', itemId)
 										const newParams = params.toString()
 										window.location.href = `/chrome-extension/item?${newParams}`

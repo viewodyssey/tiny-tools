@@ -16,7 +16,7 @@ export default function Page() {
 		const fetchData = async () => {
 			const resp = await fetch('/hypnos/api/data')
 			const fetchedSleepData = await resp.json()
-			console.log(fetchedSleepData)
+			console.debug(fetchedSleepData)
 			setSleep(fetchedSleepData.sleep.slice(-30))
 		}
 		fetchData()

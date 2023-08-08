@@ -8,6 +8,7 @@ import { GitHubLogoIcon } from '@radix-ui/react-icons'
 interface AppFrameProps {
 	sidebarChildren?: React.ReactNode
 	topbarChildren?: React.ReactNode
+	topRightChildren?: React.ReactNode
 	children?: React.ReactNode
 	sidebarUrl?: string
 }
@@ -16,6 +17,7 @@ export const AppFrame = ({
 	children,
 	sidebarChildren,
 	topbarChildren,
+	topRightChildren,
 	sidebarUrl,
 }: AppFrameProps) => {
 	const [isVisible, setVisible] = useState(true)
@@ -54,17 +56,21 @@ export const AppFrame = ({
 							</Button>
 							{topbarChildren}
 						</div>
-						<Button
-							variant="ghost"
-							size="icon"
-							className="text-textSecondary"
-							onClick={() => setVisible((prev) => !prev)}
-						>
-							<GitHubLogoIcon className="w-4 h-4" />
-						</Button>
+						{topRightChildren ? (
+							topRightChildren
+						) : (
+							<Button
+								variant="ghost"
+								size="icon"
+								className="text-textSecondary"
+								onClick={() => setVisible((prev) => !prev)}
+							>
+								<GitHubLogoIcon className="w-4 h-4" />
+							</Button>
+						)}
 					</div>
 				</div>
-				<div className="h-full overflow-auto py-4 px-4 md:px-6">
+				<div className="h-full overflow-auto py-2 pb-4 px-2 md:px-4">
 					{children}
 				</div>
 			</div>

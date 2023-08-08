@@ -4,6 +4,7 @@ import Wrapper from '@/components/Wrapper'
 import Script from 'next/script'
 import { HighlightInit } from '@highlight-run/next/highlight-init'
 import { Suspense } from 'react'
+import { Toaster } from 'ui'
 
 const headData = {
 	title: 'Tiny Tools - Chrome Extension Ranking',
@@ -54,10 +55,15 @@ export default function RootLayout({
   gtag('config', 'G-KFTQWN9V6D');`,
 					}}
 				/>
-
+				<Script
+					id="googleScript"
+					strategy="afterInteractive"
+					src="https://accounts.google.com/gsi/client"
+				/>
 				<body className="bg-gray-50">
 					<Suspense fallback={<></>}>
 						<Wrapper>{children}</Wrapper>
+						<Toaster />
 					</Suspense>
 				</body>
 			</html>

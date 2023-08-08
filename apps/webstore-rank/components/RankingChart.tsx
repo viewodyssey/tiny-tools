@@ -62,10 +62,11 @@ const parseDataToBumpChart = (
 		dataForItem.sort(sortByX)
 		return {
 			id: `${nameById[key]} (...${key.slice(-3)})`,
-			data: dataForItem.map((item) => {
-				const fullDate = String(item.x).split('-')
-				return { ...item, x: fullDate.slice(1).join('-') }
-			}),
+			data:
+				dataForItem.map((item) => {
+					const fullDate = String(item.x).split('-')
+					return { ...item, x: fullDate.slice(1).join('-') }
+				}) || [],
 		}
 	})
 	return parsedData

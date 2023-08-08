@@ -1,4 +1,5 @@
 import React, { PropsWithChildren, useEffect, useState } from 'react'
+import { getAccount } from '../utils/service'
 
 function createContext<A extends {} | null>(displayName: string) {
 	const ctx = React.createContext<A | undefined>(undefined)
@@ -23,11 +24,38 @@ export interface SearchData {
 
 export interface FilterData {
 	cumulative_rating: boolean
+	time_frame: number
+}
+
+export interface UserAccount {
+	id: string
+	email: string
+	firstName: string
+	lastName: string
+	segments?: Segment[]
+}
+
+export interface Segment {
+	type: 'keyword' | 'item'
+	id: string
+	name: string
 }
 
 const DEFAULT_SEARCH = { keyword: '', ranking: [] }
-const DEFAULT_SETTINGS = { cumulative_rating: false }
+const DEFAULT_SETTINGS = { cumulative_rating: false, time_frame: 7 }
 export const DEFAULT_SEARCH_TERM = 'tinytools_nothing_set'
+export const NO_USER: UserAccount = {
+	id: '',
+	email: '',
+	firstName: 'N',
+	lastName: '',
+}
+export const GUEST_USER: UserAccount = {
+	id: 'guest',
+	email: '',
+	firstName: 'Guest',
+	lastName: '',
+}
 
 interface DataContext {
 	searchData: SearchData
@@ -42,6 +70,8 @@ interface DataContext {
 	setLoading: (value: boolean) => void
 	open: boolean
 	setOpen: (value: boolean) => void
+	userAccount: UserAccount
+	setUserAccount: (value: UserAccount) => void
 }
 
 export const [useDataContext, DataContextProvider] =
@@ -54,6 +84,22 @@ export const DataWrapper = ({ children }: PropsWithChildren) => {
 	const [itemId, setItemId] = useState(DEFAULT_SEARCH_TERM)
 	const [loading, setLoading] = useState(false)
 	const [open, setOpen] = useState(false)
+	const [userAccount, setUserAccount] = useState<UserAccount>(NO_USER)
+
+	useEffect(() => {
+		const getUser = async () => {
+			const userId = localStorage.getItem('id')
+			if (userId) {
+				const userObject = await getAccount(userId)
+				setUserAccount(userObject)
+			} else {
+				setUserAccount(GUEST_USER)
+			}
+		}
+		if (userAccount.id === NO_USER.id) {
+			getUser()
+		}
+	}, [setUserAccount, userAccount.id])
 
 	return (
 		<DataContextProvider
@@ -70,6 +116,8 @@ export const DataWrapper = ({ children }: PropsWithChildren) => {
 				setFilters,
 				open,
 				setOpen,
+				userAccount,
+				setUserAccount,
 			}}
 		>
 			{children}

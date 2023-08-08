@@ -136,6 +136,7 @@ importers:
       eslint-config-custom: workspace:*
       eslint-plugin-react: ^7.32.2
       highlight.run: ^7.3.6
+      jwt-decode: ^3.1.2
       lucide-react: ^0.119.0
       mongodb: ^5.6.0
       next: ^13.4.1
@@ -161,6 +162,7 @@ importers:
       chrome-webstore: 2.0.0
       eslint-plugin-react: 7.32.2_eslint@8.39.0
       highlight.run: 7.3.6
+      jwt-decode: 3.1.2
       lucide-react: 0.119.0_react@18.2.0
       mongodb: 5.6.0
       next: 13.4.1_756ubwvsgazzkcxtigvs4yqbci
@@ -209,6 +211,7 @@ importers:
 
   packages/ui:
     specifiers:
+      '@radix-ui/react-avatar': ^1.0.3
       '@radix-ui/react-dialog': ^1.0.4
       '@radix-ui/react-dropdown-menu': ^2.0.5
       '@radix-ui/react-hover-card': ^1.0.6
@@ -231,6 +234,7 @@ importers:
       tsconfig: workspace:*
       typescript: ^4.5.2
     dependencies:
+      '@radix-ui/react-avatar': 1.0.3_kuusov2leqnirz6kvocub7ct4e
       '@radix-ui/react-dialog': 1.0.4_kuusov2leqnirz6kvocub7ct4e
       '@radix-ui/react-dropdown-menu': 2.0.5_kuusov2leqnirz6kvocub7ct4e
       '@radix-ui/react-hover-card': 1.0.6_kuusov2leqnirz6kvocub7ct4e
@@ -2010,6 +2014,30 @@ packages:
     dependencies:
       '@babel/runtime': 7.21.5
       '@radix-ui/react-primitive': 1.0.3_kuusov2leqnirz6kvocub7ct4e
+      '@types/react': 18.2.5
+      '@types/react-dom': 18.2.3
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    dev: false
+
+  /@radix-ui/react-avatar/1.0.3_kuusov2leqnirz6kvocub7ct4e:
+    resolution: {integrity: sha512-9ToF7YNex3Ste45LrAeTlKtONI9yVRt/zOS158iilIkW5K/Apeyb/TUQlcEFTEFvWr8Kzdi2ZYrm1/suiXPajQ==}
+    peerDependencies:
+      '@types/react': '*'
+      '@types/react-dom': '*'
+      react: ^16.8 || ^17.0 || ^18.0
+      react-dom: ^16.8 || ^17.0 || ^18.0
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      '@types/react-dom':
+        optional: true
+    dependencies:
+      '@babel/runtime': 7.21.5
+      '@radix-ui/react-context': 1.0.1_3pi6y6cylzraaxxtldk4o6b3zi
+      '@radix-ui/react-primitive': 1.0.3_kuusov2leqnirz6kvocub7ct4e
+      '@radix-ui/react-use-callback-ref': 1.0.1_3pi6y6cylzraaxxtldk4o6b3zi
+      '@radix-ui/react-use-layout-effect': 1.0.1_3pi6y6cylzraaxxtldk4o6b3zi
       '@types/react': 18.2.5
       '@types/react-dom': 18.2.3
       react: 18.2.0
@@ -5850,6 +5878,10 @@ packages:
     dependencies:
       array-includes: 3.1.6
       object.assign: 4.1.4
+    dev: false
+
+  /jwt-decode/3.1.2:
+    resolution: {integrity: sha512-UfpWE/VZn0iP50d8cz9NrZLM9lSWhcJ+0Gt/nm4by88UL+J1SiKN8/5dkjMmbEzwL2CAe+67GsegCbIKtbp75A==}
     dev: false
 
   /language-subtag-registry/0.3.22:

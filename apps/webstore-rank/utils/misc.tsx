@@ -1,4 +1,6 @@
 export const BASEPATH = '/chrome-extension'
+const dev = process.env['NODE_ENV'] !== 'production'
+export const DOMAIN = dev ? 'http://localhost:3001' : 'https://viewodyssey.com'
 
 export const updatePropertyState = (
 	setState: (v: any) => void,

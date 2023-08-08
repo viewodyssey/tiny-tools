@@ -1,18 +1,44 @@
 'use client'
-import { AppFrame, CardFrame, Skeleton } from 'ui'
+import {
+	AppFrame,
+	Button,
+	CardFrame,
+	Dialog,
+	DialogTrigger,
+	Skeleton,
+	useToast,
+} from 'ui'
 import { CommandBarChrome } from '@/components/CommandBarChrome'
 import SidebarItems from '@/components/SidebarItems'
-import { Hourglass } from 'lucide-react'
-import { DEFAULT_SEARCH_TERM, useDataContext } from '../../hooks/DataContext'
+import {
+	DEFAULT_SEARCH_TERM,
+	GUEST_USER,
+	NO_USER,
+	useDataContext,
+} from '../../hooks/DataContext'
 import { useEffect, useMemo, useState } from 'react'
 import { useSearchParams } from 'next/navigation'
 import UsersTrend from '../../components/UsersTrend'
 import RatingTrend from '../../components/RatingTrend'
+import KeywordRankingTable from '../../components/KeywordRankingTable'
+import { ItemFilterMenu } from '../../components/ItemFilterMenu'
+import LoginModal from '../../components/LoginModal/LoginModal'
+import { addSegment } from '../../utils/service'
+import AppTopRight from '../../components/AppTopRight'
 
 export default function Page() {
-	const { itemId, setItemId, setLoading, loading } = useDataContext()
+	const {
+		itemId,
+		setItemId,
+		setLoading,
+		loading,
+		userAccount,
+		setUserAccount,
+	} = useDataContext()
 	const [itemData, setItemData] = useState<any>({})
+	const [rankingData, setRankingData] = useState<any>([])
 	const searchParams = useSearchParams()
+	const { toast } = useToast()
 
 	useEffect(() => {
 		const item = searchParams.get('id')
@@ -23,7 +49,7 @@ export default function Page() {
 				setItemId('')
 			}
 		}
-	}, [searchParams])
+	}, [searchParams, setItemId])
 
 	useEffect(() => {
 		const getData = async () => {
@@ -34,12 +60,34 @@ export default function Page() {
 				)
 			).json()
 			setItemData(res.data)
+			setRankingData(res.rankings ?? [])
 			setLoading(false)
 		}
 		if (itemId.length > 0 && itemId !== DEFAULT_SEARCH_TERM) {
 			getData()
 		}
-	}, [itemId])
+	}, [itemId, setLoading])
+
+	const trackItem = async () => {
+		try {
+			const updatedUser = await addSegment({
+				accountId: userAccount.id,
+				segment: { id: itemId, type: 'item', name: itemData.name },
+			})
+			toast({
+				title: 'Saved item!',
+				description: `Now tracking '${itemData.name}'`,
+			})
+			setUserAccount(updatedUser)
+		} catch (e) {
+			console.error(e)
+			toast({
+				title: 'Uh oh! Something went wrong.',
+				description:
+					'There was a problem with your request. Please try again',
+			})
+		}
+	}
 
 	const mostRecentUserData = useMemo(() => {
 		const items = itemData.users || []
@@ -55,6 +103,7 @@ export default function Page() {
 		<AppFrame
 			sidebarChildren={<SidebarItems />}
 			topbarChildren={<CommandBarChrome />}
+			topRightChildren={<AppTopRight />}
 		>
 			<div className="flex flex-col md:flex-row md:justify-between md:items-center w-full pb-4">
 				<div className="pt-2 pb-4 px-2 flex flex-col gap-1">
@@ -66,6 +115,20 @@ export default function Page() {
 							itemData.name
 						)}
 					</h3>
+				</div>
+				<div className="flex gap-2">
+					<ItemFilterMenu />
+					{userAccount.id !== NO_USER.id &&
+					userAccount.id !== GUEST_USER.id ? (
+						<Button onClick={trackItem}>Track Extension</Button>
+					) : (
+						<Dialog>
+							<DialogTrigger asChild>
+								<Button>Track Extension</Button>
+							</DialogTrigger>
+							<LoginModal />
+						</Dialog>
+					)}
 				</div>
 			</div>
 			<div className="flex flex-col gap-4 w-full">
@@ -105,15 +168,13 @@ export default function Page() {
 						</CardFrame>
 					</div>
 				</div>
-				<CardFrame className="w-full">
-					<div className="flex flex-col items-center justify-center gap-2 w-full h-full">
-						<div className="bg-gray-200 w-12 h-12 rounded flex items-center justify-center">
-							<Hourglass size={24} className="text-gray-500" />
-						</div>
-						<div className="max-w-[420px] text-textSecondary text-center">
-							This feature is in the works. Thanks for being
-							patient!
-						</div>
+				<CardFrame
+					className="w-full !px-0 !pb-0"
+					titleClassName="px-4"
+					title="Search Rankings"
+				>
+					<div className="pt-4">
+						<KeywordRankingTable data={rankingData} />
 					</div>
 				</CardFrame>
 			</div>

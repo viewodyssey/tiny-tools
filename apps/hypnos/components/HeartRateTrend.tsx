@@ -19,7 +19,7 @@ const HeartRateTrend = ({ data, chartProps }: HeartRateProps) => {
 				}),
 			},
 		]
-		console.log(parsedData)
+		console.debug(parsedData)
 		return parsedData
 	}
 	return (

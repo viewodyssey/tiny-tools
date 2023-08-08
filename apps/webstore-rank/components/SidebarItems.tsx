@@ -1,10 +1,12 @@
-import { buttonVariants, Skeleton } from 'ui'
+import { buttonVariants } from 'ui'
 import { ShoppingBag, TextCursorInput } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 import { MagnifyingGlassIcon } from '@radix-ui/react-icons'
 import Link from 'next/link'
 import { BASEPATH } from '../utils/misc'
 import { useEffect, useState } from 'react'
+import { useDataContext } from '../hooks/DataContext'
+import { generateSegmentUrl } from '../utils/segment'
 
 const SIDEBAR_ITEMS = [
 	{
@@ -27,6 +29,7 @@ const SIDEBAR_ITEMS = [
 const SidebarItems = () => {
 	const pathname = usePathname()
 	const [isMounted, setIsMounted] = useState(false)
+	const { userAccount } = useDataContext()
 
 	useEffect(() => {
 		setIsMounted(true)
@@ -60,6 +63,43 @@ const SidebarItems = () => {
 					)
 				})}
 			</div>
+			{userAccount.segments && (
+				<div className="flex flex-col pt-6 gap-1">
+					<h5 className="text-textSecondary text-xs font-semibold px-2 pb-1">
+						Saved
+					</h5>
+					{userAccount.segments.map((segment, idx) => {
+						return (
+							<Link
+								key={idx}
+								href={generateSegmentUrl(segment)}
+								className={`${buttonVariants({
+									variant: 'ghost',
+								})} !justify-start !px-2 w-full ${
+									isMounted &&
+									pathname.includes(
+										generateSegmentUrl(segment),
+									)
+										? 'text-textPrimary bg-hover'
+										: 'text-textSecondary'
+								}`}
+							>
+								{segment.type === 'item' ? (
+									<ShoppingBag size={16} className="mr-2" />
+								) : (
+									<TextCursorInput
+										size={16}
+										className="mr-2"
+									/>
+								)}
+								<span className="w-full truncate">
+									{segment.name}
+								</span>
+							</Link>
+						)
+					})}
+				</div>
+			)}
 		</div>
 	)
 }

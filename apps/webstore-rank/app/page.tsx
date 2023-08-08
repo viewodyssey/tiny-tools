@@ -6,6 +6,7 @@ import SidebarItems from '@/components/SidebarItems'
 import { MagnifyingGlassIcon } from '@radix-ui/react-icons'
 import Link from 'next/link'
 import { Chrome, ShoppingBag, TextCursorInput } from 'lucide-react'
+import AppTopRight from '../components/AppTopRight'
 
 export default function Page() {
 	const { setOpen } = useDataContext()
@@ -14,6 +15,7 @@ export default function Page() {
 		<AppFrame
 			sidebarChildren={<SidebarItems />}
 			topbarChildren={<CommandBarChrome />}
+			topRightChildren={<AppTopRight />}
 		>
 			<CardFrame className="w-full h-full overflow-auto">
 				<div className="flex gap-8 flex-col items-center justify-center gap-4 w-full min-h-full py-8">

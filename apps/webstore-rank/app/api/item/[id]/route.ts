@@ -19,7 +19,54 @@ export async function GET(
 		const existingItem = await db.collection('items').findOne({ id: id })
 
 		if (existingItem) {
-			return NextResponse.json({ data: existingItem })
+			const searchTermsWithId = await db
+				.collection('search')
+				.aggregate([
+					{
+						$addFields: {
+							latestRanking: {
+								$cond: {
+									if: {
+										$ne: [
+											{
+												$type: {
+													$arrayElemAt: [
+														'$ranking.items.id',
+														-1,
+													],
+												},
+											},
+											'array',
+										],
+									},
+									then: [],
+									else: {
+										$arrayElemAt: ['$ranking.items.id', -1],
+									},
+								},
+							},
+						},
+					},
+					{
+						$project: {
+							keyword: 1,
+							latestRanking: 1,
+							containsId: {
+								$in: [id, '$latestRanking'],
+							},
+						},
+					},
+					{
+						$match: {
+							containsId: true,
+						},
+					},
+				])
+				.toArray()
+			return NextResponse.json({
+				data: existingItem,
+				rankings: searchTermsWithId,
+			})
 		}
 		const itemUpdated = await db.collection('items').findOneAndUpdate(
 			{

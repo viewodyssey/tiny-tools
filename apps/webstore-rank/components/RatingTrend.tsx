@@ -1,5 +1,7 @@
 'use client'
+import { useMemo } from 'react'
 import { useDataContext } from '../hooks/DataContext'
+import { sortByDateString } from '../utils/sort'
 import LineChart from './LineChart'
 
 interface RatingTrendProps {
@@ -8,24 +10,36 @@ interface RatingTrendProps {
 }
 
 const RatingTrend = ({ data, chartProps }: RatingTrendProps) => {
-	const { loading } = useDataContext()
-	const parseDataToLineChart = (data: any) => {
-		const parsedData = [
+	const { loading, filters } = useDataContext()
+	const parsedData = useMemo(() => {
+		const startDate = new Date()
+		startDate.setDate(startDate.getDate() - filters.time_frame)
+		const sortedData = data.sort(sortByDateString).reverse()
+		const fillInData = []
+		Array.from(Array(filters.time_frame).keys()).map(() => {
+			const index = sortedData.findIndex((d) => {
+				return new Date(d.date).getTime() < startDate.getTime()
+			})
+			startDate.setDate(startDate.getDate() + 1)
+			if (index !== -1) {
+				fillInData.push({
+					x: new Date(startDate.getTime()),
+					y: data[index]?.rating.average || null,
+				})
+			}
+		})
+		const returnData = [
 			{
 				id: 'Main',
-				data: data.map((d) => {
-					return {
-						x: new Date(d.date),
-						y: d.rating.average || null,
-					}
-				}),
+				data: fillInData,
 			},
 		]
-		return parsedData
-	}
+		return returnData
+	}, [data, filters.time_frame])
+
 	return (
 		<LineChart
-			data={parseDataToLineChart(data)}
+			data={parsedData}
 			chartProps={{
 				xScale: {
 					type: 'time',

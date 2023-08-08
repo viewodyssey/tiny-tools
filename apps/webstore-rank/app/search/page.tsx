@@ -1,8 +1,21 @@
 'use client'
 import { useEffect, useState } from 'react'
-import { DEFAULT_SEARCH_TERM, useDataContext } from '../../hooks/DataContext'
+import {
+	DEFAULT_SEARCH_TERM,
+	GUEST_USER,
+	NO_USER,
+	useDataContext,
+} from '../../hooks/DataContext'
 import RankingChart from '@/components/RankingChart'
-import { AppFrame, CardFrame, Skeleton } from 'ui'
+import {
+	AppFrame,
+	Button,
+	CardFrame,
+	Dialog,
+	DialogTrigger,
+	Skeleton,
+	useToast,
+} from 'ui'
 import UsersChart from '@/components/UsersChart'
 import RatingChart from '@/components/RatingChart'
 import TopResultsTable from '@/components/TopResultsTable'
@@ -10,6 +23,9 @@ import { CommandBarChrome } from '@/components/CommandBarChrome'
 import { ChartFilterMenu } from '@/components/ChartFilterMenu'
 import SidebarItems from '@/components/SidebarItems'
 import { useSearchParams } from 'next/navigation'
+import LoginModal from '../../components/LoginModal/LoginModal'
+import { addSegment } from '../../utils/service'
+import AppTopRight from '../../components/AppTopRight'
 
 export default function Page() {
 	const {
@@ -19,9 +35,12 @@ export default function Page() {
 		setSearchTerm,
 		setLoading,
 		loading,
+		userAccount,
+		setUserAccount,
 	} = useDataContext()
 	const [itemsData, setItemsData] = useState([])
 	const searchParams = useSearchParams()
+	const { toast } = useToast()
 
 	useEffect(() => {
 		const keyword = searchParams.get('keyword')
@@ -32,7 +51,7 @@ export default function Page() {
 				setSearchTerm('')
 			}
 		}
-	}, [searchParams])
+	}, [searchParams, setSearchTerm])
 
 	useEffect(() => {
 		const getData = async () => {
@@ -51,30 +70,34 @@ export default function Page() {
 		if (searchTerm.length > 2 && searchTerm !== DEFAULT_SEARCH_TERM) {
 			getData()
 		}
-	}, [searchTerm])
+	}, [searchTerm, setSearchData, setLoading])
 
-	// useEffect(() => {
-	//   const getData = async () => {
-	//     const res = await (
-	//       await fetch(`/api/item/jfkjbfhcfaoldhgbnkekkoheganchiea`)
-	//     ).json();
-	//     console.log("pepee", res);
-	//   };
-	//   getData();
-	// }, []);
-
-	// useEffect(() => {
-	//   const getData = async () => {
-	//     const res = await (await fetch(`/api/search/update`)).json();
-	//     console.log("pepee", res);
-	//   };
-	//   getData();
-	// }, []);
+	const trackKeyword = async () => {
+		try {
+			const updatedUser = await addSegment({
+				accountId: userAccount.id,
+				segment: { id: searchTerm, type: 'keyword', name: searchTerm },
+			})
+			toast({
+				title: 'Saved item!',
+				description: `Now tracking '${searchTerm}'`,
+			})
+			setUserAccount(updatedUser)
+		} catch (e) {
+			console.error(e)
+			toast({
+				title: 'Uh oh! Something went wrong.',
+				description:
+					'There was a problem with your request. Please try again',
+			})
+		}
+	}
 
 	return (
 		<AppFrame
 			sidebarChildren={<SidebarItems />}
 			topbarChildren={<CommandBarChrome />}
+			topRightChildren={<AppTopRight />}
 		>
 			<div className="flex flex-col md:flex-row md:justify-between md:items-center w-full pb-4">
 				<div className="pt-2 pb-4 px-2 flex flex-col gap-1">
@@ -87,8 +110,19 @@ export default function Page() {
 						)}
 					</h3>
 				</div>
-				<div className="flex">
+				<div className="flex gap-2">
 					<ChartFilterMenu />
+					{userAccount.id !== NO_USER.id &&
+					userAccount.id !== GUEST_USER.id ? (
+						<Button onClick={trackKeyword}>Track Keyword</Button>
+					) : (
+						<Dialog>
+							<DialogTrigger asChild>
+								<Button>Track Keyword</Button>
+							</DialogTrigger>
+							<LoginModal />
+						</Dialog>
+					)}
 				</div>
 			</div>
 			<div className="flex flex-col gap-4 w-full">

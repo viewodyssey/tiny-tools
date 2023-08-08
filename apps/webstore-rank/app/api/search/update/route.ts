@@ -20,16 +20,11 @@ export async function GET() {
 		try {
 			await updateSearchRank(db, allKeywords[i].keyword)
 			await updateSearchTerm(db, allKeywords[i].keyword)
-			return NextResponse.json({
-				status: 'done',
-			})
 		} catch (e) {
 			console.error(e)
-			NextResponse.json({
-				error: {
-					message: e.message,
-				},
-			})
 		}
 	}
+	return NextResponse.json({
+		status: 'done',
+	})
 }
