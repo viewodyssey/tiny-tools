@@ -6,7 +6,7 @@
 	"tailwind": {
 		"config": "packages/config/tailwind.config.js",
 		"css": "packages/ui/styles.css",
-		"baseColor": "gray",
+		"baseColor": "zinc",
 		"cssVariables": true
 	},
 	"aliases": {
