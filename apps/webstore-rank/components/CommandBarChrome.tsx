@@ -1,4 +1,4 @@
-'use-client'
+'use client'
 import { DEFAULT_SEARCH_TERM, useDataContext } from '@/hooks/DataContext'
 import { MagnifyingGlassIcon } from '@radix-ui/react-icons'
 import { TextCursorInput, ShoppingBag } from 'lucide-react'

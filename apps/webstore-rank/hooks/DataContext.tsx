@@ -1,3 +1,4 @@
+'use client'
 import React, { PropsWithChildren, useEffect, useState } from 'react'
 import { getAccount } from '../utils/service'
 

@@ -1,8 +1,8 @@
+'use client'
 import { H } from 'highlight.run'
 import jwtDecode from 'jwt-decode'
 import { Loader2 } from 'lucide-react'
 import { useEffect, useState } from 'react'
-import { Badge } from 'ui'
 import { useDataContext } from '../../hooks/DataContext'
 import { addAccount, getAccount } from '../../utils/service'
 

@@ -1,4 +1,5 @@
-import { buttonVariants } from 'ui'
+'use client'
+import { buttonVariants, Skeleton } from 'ui'
 import { ShoppingBag, TextCursorInput } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 import { MagnifyingGlassIcon } from '@radix-ui/react-icons'
@@ -63,7 +64,7 @@ const SidebarItems = () => {
 					)
 				})}
 			</div>
-			{userAccount.segments && (
+			{userAccount.segments ? (
 				<div className="flex flex-col pt-6 gap-1">
 					<h5 className="text-textSecondary text-xs font-semibold px-2 pb-1">
 						Saved
@@ -97,6 +98,13 @@ const SidebarItems = () => {
 								</span>
 							</Link>
 						)
+					})}
+				</div>
+			) : (
+				<div className="flex flex-col pt-6 gap-2">
+					<Skeleton className="w-12 h-4" />
+					{Array.from(new Array(3)).map((_, idx) => {
+						return <Skeleton className="w-10/12 h-6" key={idx} />
 					})}
 				</div>
 			)}

@@ -1,3 +1,4 @@
+'use client'
 import { Avatar, AvatarFallback, Button, Dialog, DialogTrigger } from 'ui'
 import { GUEST_USER, NO_USER, useDataContext } from '../hooks/DataContext'
 import LoginModal from './LoginModal/LoginModal'
