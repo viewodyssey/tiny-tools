@@ -1,6 +1,7 @@
 import clientPromise from '@/utils/mongodb'
 import { updateSearchTerm } from '@/utils/updateSearchTerm'
 import { NextResponse } from 'next/server'
+import { updateSearchRank } from '../../../../../utils/updateSearchRank'
 
 /**
  * Update each extension item details for the top 100 for search term
@@ -18,6 +19,7 @@ export async function GET(
 	try {
 		const client = await clientPromise
 		const db = client.db('db')
+		await updateSearchRank(db, id)
 		const updatedItems = await updateSearchTerm(db, id)
 		return NextResponse.json({ updatedItems })
 	} catch (e) {

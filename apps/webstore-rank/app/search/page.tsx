@@ -57,6 +57,23 @@ export default function Page() {
 
 	useEffect(() => {
 		const getData = async () => {
+			await fetch(
+				`/chrome-extension/api/search/update/${encodeURIComponent(
+					searchTerm,
+				)}`,
+			)
+		}
+		if (searchTerm.length > 2 && searchTerm !== DEFAULT_SEARCH_TERM) {
+			try {
+				getData()
+			} catch (e) {
+				console.error(e)
+			}
+		}
+	}, [searchTerm])
+
+	useEffect(() => {
+		const getData = async () => {
 			setLoading(true)
 			const res = await (
 				await fetch(

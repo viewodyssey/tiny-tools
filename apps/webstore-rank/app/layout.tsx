@@ -26,8 +26,6 @@ export default function RootLayout({
 	return (
 		<>
 			{process.env['NODE_ENV'] !== 'development' ? (
-				<></>
-			) : (
 				<HighlightInit
 					projectId={'ng2kkyg1'}
 					tracingOrigins
@@ -37,6 +35,8 @@ export default function RootLayout({
 						urlBlocklist: [],
 					}}
 				/>
+			) : (
+				<></>
 			)}
 			<html lang="en">
 				<Script

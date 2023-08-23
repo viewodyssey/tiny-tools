@@ -48,6 +48,7 @@ const parseDataToBumpChart = (
 				}
 			})
 	})
+
 	const parsedData = Object.keys(rankingById).map((key) => {
 		const dataForItem = rankingById[key].filter(
 			(dataItem) => dataItem.x > todayDate,
@@ -69,7 +70,20 @@ const parseDataToBumpChart = (
 				}) || [],
 		}
 	})
-	return parsedData
+	const handledNullData = parsedData.map((d, i) =>
+		d.data.length > 0
+			? d
+			: {
+					...d,
+					data: [
+						{
+							x: String(todayDate).split('-').slice(1).join('-'),
+							y: i,
+						},
+					],
+			  },
+	)
+	return handledNullData
 }
 
 const LIMIT = 20

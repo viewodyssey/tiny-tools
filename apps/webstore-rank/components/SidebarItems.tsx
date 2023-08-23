@@ -100,13 +100,15 @@ const SidebarItems = () => {
 						)
 					})}
 				</div>
-			) : (
+			) : userAccount.email ? (
 				<div className="flex flex-col pt-6 gap-2">
 					<Skeleton className="w-12 h-4" />
 					{Array.from(new Array(3)).map((_, idx) => {
 						return <Skeleton className="w-10/12 h-6" key={idx} />
 					})}
 				</div>
+			) : (
+				<></>
 			)}
 		</div>
 	)

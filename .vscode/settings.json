@@ -3,6 +3,7 @@
 	"typescript.enablePromptUseWorkspaceTsdk": true,
 	"editor.formatOnSave": true,
 	"eslint.workingDirectories": [{ "mode": "auto" }],
+	"typescript.preferences.importModuleSpecifier": "relative",
 	"eslint.experimental.useFlatConfig": true,
 	"editor.defaultFormatter": "dbaeumer.vscode-eslint",
 	"[yaml]": {
