@@ -10,6 +10,14 @@
 			"destination": "https://daskalos.vercel.app/chrome-extension/:match*"
 		},
 		{
+			"source": "/i-demoed",
+			"destination": "https://idemoed.vercel.app"
+		},
+		{
+			"source": "/i-demoed/:match*",
+			"destination": "https://idemoed.vercel.app/:match*"
+		},
+		{
 			"source": "/",
 			"destination": "https://tinytools-web.vercel.app"
 		},
