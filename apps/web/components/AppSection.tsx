@@ -2,6 +2,7 @@ import { Button } from 'ui'
 import { AppCard, AppCardItem } from './AppCard'
 import ChromeRankImg from '@/assets/chromerank.png'
 import RecapImg from '@/assets/videorecap.png'
+import DemoedImg from '@/assets/idemoed.png'
 
 const APPS: AppCardItem[] = [
 	{
@@ -17,6 +18,13 @@ const APPS: AppCardItem[] = [
 		href: 'https://videorecap.viewodyssey.com',
 		description:
 			'View your YouTube year in review. 2M+ users, including YouTuber Ludwig Ahgren. ',
+	},
+	{
+		title: 'I Demoed',
+		image: DemoedImg.src,
+		href: 'https://idemoed.vercel.app',
+		description:
+			'Showcase hexagon "I Demoed" stickers from physical and virtual hackathons. ',
 	},
 ]
 
