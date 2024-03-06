@@ -10,12 +10,12 @@ const Navbar = () => {
 				<img src={OdysseyIcon.src} className="w-4 h-4" alt="" />
 				<div className="flex gap-1">
 					<Link
-						href={'/tools'}
+						href={'/chrome-extension'}
 						className={`${buttonVariants({
 							variant: 'ghost',
 						})} !h-auto !px-3 !py-1.5 m-[1px] !rounded-full !text-gray-500 !font-normal hover:text-gray-700 hover:border-border hover:border hover:m-0`}
 					>
-						Tools
+						Chrome Extension Ranking
 					</Link>
 					<Link
 						target="_blank"

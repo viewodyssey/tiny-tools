@@ -6,11 +6,11 @@ import DemoedImg from '@/assets/idemoed.png'
 
 const APPS: AppCardItem[] = [
 	{
-		title: 'Tiny Tools',
+		title: 'Chrome Extension Ranking',
 		image: ChromeRankImg.src,
-		href: '/tools',
+		href: '/chrome-extension',
 		description:
-			'Collection of dashboards that enhance various workflows and help you view data in interesting way. ',
+			'View historical rankings and analytics for search terms and Chrome extensions. ',
 	},
 	{
 		title: 'Video Recap',
