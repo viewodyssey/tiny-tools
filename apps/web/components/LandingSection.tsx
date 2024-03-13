@@ -21,7 +21,7 @@ const LandingSection = () => {
 					Gather and visualize your digital footprint in a beautiful
 					way.{' '}
 				</p>
-				<Link className={buttonVariants()} href="/tools">
+				<Link className={buttonVariants()} href="">
 					Get started
 				</Link>
 			</div>
