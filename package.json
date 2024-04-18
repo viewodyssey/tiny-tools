@@ -6,7 +6,8 @@
 		"lint": "turbo run lint",
 		"format": "prettier --write \"**/*.{ts,tsx,js,json,css}\"",
 		"ui:add": "pnpm --filter ui ui:add",
-		"ci": "pnpm install"
+		"ci": "pnpm install",
+		"dev:moist": "turbo run dev --filter=moist"
 	},
 	"devDependencies": {
 		"@turbo/gen": "^1.9.7",

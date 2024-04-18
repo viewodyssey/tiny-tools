@@ -34,6 +34,8 @@
 
 		--ring: 215 20.2% 65.1%;
 
+		--moist: 215 72% 54%;
+
 		--radius: 0.5rem;
 	}
 
@@ -67,6 +69,8 @@
 		--destructive-foreground: 210 40% 98%;
 
 		--ring: 216 34% 17%;
+
+		--moist: 215 72% 54%;
 
 		--radius: 0.5rem;
 	}

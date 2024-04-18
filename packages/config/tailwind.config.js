@@ -52,6 +52,9 @@ module.exports = {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))',
 				},
+				moist: {
+					DEFAULT: 'hsl(var(--moist))',
+				},
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
@@ -71,6 +74,9 @@ module.exports = {
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
 				'accordion-up': 'accordion-up 0.2s ease-out',
+			},
+			screens: {
+				xs: '420px',
 			},
 		},
 	},
