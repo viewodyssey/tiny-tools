@@ -1,9 +1,12 @@
+'use client'
 import { Film, Gamepad, Home, Info, Tv } from 'lucide-react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { useEffect, useState } from 'react'
 
 const MENU_ITEMS = [
 	{
-		href: '/',
+		href: '',
 		title: 'Home',
 		icon: <Home size={20} />,
 	},
@@ -30,7 +33,7 @@ const MENU_ITEMS = [
 ]
 
 export const BottomMenu = () => {
-	const urlPath = window.location.pathname.replace('/moist-meter', '')
+	const pathname = usePathname()
 
 	return (
 		<div className="flex w-full sticky bottom-0 bg-background gap-2 justify-between p-2 md:hidden border-t border-input">
@@ -39,8 +42,10 @@ export const BottomMenu = () => {
 					<Link
 						key={i}
 						href={item.href}
-						className={`flex flex-col text-textSecondary items-center px-2 p-1 gap-1 hover:bg-hover rounded hover:text-textPrimary w-[60px] ${
-							urlPath === item.href ? 'text-moist' : ''
+						className={`flex flex-col text-primary/60 items-center px-2 p-1 gap-1 hover:bg-hover rounded hover:text-primary/100 w-[60px] ${
+							pathname.replace('/moist-meter', '') === item.href
+								? '!text-moist'
+								: ''
 						}`}
 					>
 						<div>{item.icon}</div>

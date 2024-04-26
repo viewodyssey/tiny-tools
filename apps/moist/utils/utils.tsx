@@ -10,7 +10,9 @@ export const filterValidMedia = ({
 	const nonEmptyData = VIDEOS.videos
 		.filter(
 			(video) =>
-				Object.keys(video.metadata).length > 0 && video.analysis.score,
+				Object.keys(video.metadata).length > 0 &&
+				video.analysis.score &&
+				video.videoId,
 		)
 		.filter(
 			(video) => video.metadata.poster_path || video.metadata.cover_url,
@@ -37,4 +39,8 @@ export const filterValidMedia = ({
 	return type
 		? nonEmptyData.filter((video) => video.analysis.type === type)
 		: nonEmptyData
+}
+
+export const findMedia = (videoId: string) => {
+	return filterValidMedia({}).find((item) => item.videoId === videoId)
 }

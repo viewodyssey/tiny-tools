@@ -60,7 +60,7 @@ export default function RootLayout({
 					strategy="afterInteractive"
 					src="https://accounts.google.com/gsi/client"
 				/>
-				<body className="bg-gray-50">
+				<body className={`bg-background dark`}>
 					<Suspense fallback={<></>}>
 						<Wrapper>{children}</Wrapper>
 						<Toaster />
