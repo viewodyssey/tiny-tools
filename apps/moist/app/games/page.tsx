@@ -6,6 +6,7 @@ import { filterValidMedia } from '@/utils/utils'
 import Dropdown from '../../components/Dropdown'
 import { SORT_ITEMS } from '../../constants'
 import { useState } from 'react'
+import Tabs from '../../components/Tabs'
 
 export default function Page() {
 	const [sort, setSort] = useState(SORT_ITEMS[0].value)
@@ -15,9 +16,8 @@ export default function Page() {
 		<div className="h-full w-full">
 			<TopNavigation />
 			<div className="pb-8">
-				<div className="px-2 py-2 mt-2 flex justify-between items-center w-full">
-					<div className="text-sm pl-2">{mediaItem.length} items</div>
-					<Dropdown
+				<div className="w-full mt-2">
+					<Tabs
 						items={SORT_ITEMS}
 						value={sort}
 						onChange={(value) => {
@@ -27,7 +27,7 @@ export default function Page() {
 				</div>
 				<div className="flex flex-wrap max-w-[800px] mx-auto">
 					{mediaItem.map((video) => {
-						return <PosterItem video={video} key={video.id} />
+						return <PosterItem video={video} />
 					})}
 				</div>
 			</div>

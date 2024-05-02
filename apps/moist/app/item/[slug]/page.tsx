@@ -15,7 +15,12 @@ export default function Page({ params }: { params: { slug: string } }) {
 		return null
 	}
 
-	const dateSplit = data.metadata.release_date.split('-')[0].split(',')
+	const date =
+		data.metadata.release_date ??
+		data.metadata.first_air_date ??
+		data.publishedAt
+	const dateSplit = date.split('-')[0].split(',')
+	const publishedDateSplit = data.publishedAt.split('-')[0]
 
 	return (
 		<div className="h-full w-full">
@@ -44,6 +49,67 @@ export default function Page({ params }: { params: { slug: string } }) {
 									Watch Moist Meter
 								</Button>
 							</Link>
+
+							<div className="flex flex-col mt-2 gap-2">
+								{data['analysis']['type'] !== 'game' && (
+									<>
+										<Link
+											href={`https://www.youtube.com/watch?v=${data.videoId}`}
+											target="_blank"
+											rel="noopener noreferrer"
+										>
+											<Button
+												variant="outline"
+												className="w-full"
+											>
+												IMDB
+											</Button>
+										</Link>
+
+										<Link
+											href={`https://www.youtube.com/watch?v=${data.videoId}`}
+											target="_blank"
+											rel="noopener noreferrer"
+										>
+											<Button
+												variant="outline"
+												className="w-full"
+											>
+												Rotten Tomatoes
+											</Button>
+										</Link>
+									</>
+								)}
+
+								{data['analysis']['type'] === 'game' && (
+									<>
+										<Link
+											href={`https://www.youtube.com/watch?v=${data.videoId}`}
+											target="_blank"
+											rel="noopener noreferrer"
+										>
+											<Button
+												variant="outline"
+												className="w-full"
+											>
+												Metacritic
+											</Button>
+										</Link>
+										<Link
+											href={`https://www.youtube.com/watch?v=${data.videoId}`}
+											target="_blank"
+											rel="noopener noreferrer"
+										>
+											<Button
+												variant="outline"
+												className="w-full"
+											>
+												Gamespot
+											</Button>
+										</Link>
+									</>
+								)}
+							</div>
 						</div>
 					</div>
 					<div className="flex-col flex gap-4 items-center">
@@ -113,7 +179,7 @@ export default function Page({ params }: { params: { slug: string } }) {
 										Crit1kal Consensus
 									</div>
 									<div className="text-xs lg:text-sm">
-										Reviewed
+										Reviewed {publishedDateSplit}
 									</div>
 								</div>
 							</div>

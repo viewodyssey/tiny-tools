@@ -5,6 +5,7 @@ import Script from 'next/script'
 import { HighlightInit } from '@highlight-run/next/highlight-init'
 import { Suspense } from 'react'
 import { Toaster } from 'ui'
+import LoadingState from '../components/LoadingState'
 
 const headData = {
 	title: 'Moist Meter',
@@ -60,8 +61,8 @@ export default function RootLayout({
 					strategy="afterInteractive"
 					src="https://accounts.google.com/gsi/client"
 				/>
-				<body className={`bg-background dark`}>
-					<Suspense fallback={<></>}>
+				<body className={`bg-background min-h-screen`}>
+					<Suspense fallback={<LoadingState />}>
 						<Wrapper>{children}</Wrapper>
 						<Toaster />
 					</Suspense>

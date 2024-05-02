@@ -18,7 +18,7 @@ module.exports = {
 			colors: {
 				textPrimary: colors.gray[800],
 				textSecondary: colors.gray[500],
-				hover: colors.slate[100],
+				hover: 'hsl(var(--hover))',
 				border: 'hsl(var(--border))',
 				input: 'hsl(var(--input))',
 				ring: 'hsl(var(--ring))',
