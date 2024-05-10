@@ -333,8 +333,6 @@ importers:
 
   packages/ui:
     specifiers:
-      '@nivo/bar': ^0.83.0
-      '@nivo/colors': ^0.86.0
       '@radix-ui/react-avatar': ^1.0.3
       '@radix-ui/react-dialog': ^1.0.4
       '@radix-ui/react-dropdown-menu': ^2.0.5
@@ -358,8 +356,6 @@ importers:
       tsconfig: workspace:*
       typescript: ^4.5.2
     dependencies:
-      '@nivo/bar': 0.83.0_v2m5e27vhdewzwhryxwfaorcca
-      '@nivo/colors': 0.86.0_biqbaboplfbrettd7655fr4n2y
       '@radix-ui/react-avatar': 1.0.3_kuusov2leqnirz6kvocub7ct4e
       '@radix-ui/react-dialog': 1.0.4_kuusov2leqnirz6kvocub7ct4e
       '@radix-ui/react-dropdown-menu': 2.0.5_kuusov2leqnirz6kvocub7ct4e
