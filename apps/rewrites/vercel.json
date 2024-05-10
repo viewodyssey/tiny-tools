@@ -19,11 +19,11 @@
 		},
 		{
 			"source": "/moist-meter",
-			"destination": "https://moistmeter.vercel.app"
+			"destination": "https://moistmeter.vercel.app/moist-meter"
 		},
 		{
 			"source": "/moist-meter/:match*",
-			"destination": "https://moistmeter.vercel.app/:match*"
+			"destination": "https://moistmeter.vercel.app/moist-meter/:match*"
 		},
 		{
 			"source": "/",
