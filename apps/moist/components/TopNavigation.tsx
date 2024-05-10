@@ -40,8 +40,8 @@ export const TopNavigation = () => {
 				<div
 					className={`hidden lg:inline-flex gap-4 items-center ${bebas.className}`}
 				>
-					{NAV_ITEMS.map((item) => (
-						<Link href={item.href}>
+					{NAV_ITEMS.map((item, idx) => (
+						<Link href={item.href} key={idx}>
 							<div
 								className={`p-1 px-2 rounded-sm text-xl tracking-wide text-white/50 hover:text-white hover:underline underline-offset-8 ${
 									pathname.replace('/moist-meter', '') ===
