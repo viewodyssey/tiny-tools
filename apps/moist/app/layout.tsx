@@ -10,7 +10,7 @@ import LoadingState from '../components/LoadingState'
 const headData = {
 	title: 'Moist Meter',
 	description:
-		'View historical rankings and analytics for search terms and Chrome extensions. ',
+		'One man takes on the movie and gaming industry, one review at a time. The Moist Meter documents content creator penguinz0’s (MoistCr1TiKaL) David vs. Goliath journey.',
 }
 
 export const metadata: Metadata = {
