@@ -18,6 +18,14 @@
 			"destination": "https://idemoed.vercel.app/:match*"
 		},
 		{
+			"source": "/moist-meter",
+			"destination": "https://moist-meter.vercel.app"
+		},
+		{
+			"source": "/moist-meter/:match*",
+			"destination": "https://moist-meter.vercel.app/:match*"
+		},
+		{
 			"source": "/",
 			"destination": "https://tinytools-web.vercel.app"
 		},

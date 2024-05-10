@@ -26,7 +26,7 @@ export default function Page() {
 				</div>
 				<div className="flex flex-wrap max-w-[800px] mx-auto">
 					{mediaItem.map((video) => {
-						return <PosterItem video={video} />
+						return <PosterItem key={video.id} video={video} />
 					})}
 				</div>
 			</div>
