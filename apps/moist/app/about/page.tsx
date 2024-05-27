@@ -4,7 +4,11 @@ import WaterIcon from '@/assets/white-moist.svg'
 import { TopNavigation } from '@/components/TopNavigation'
 import Image from 'next/image'
 import { Film, Gamepad, Tv } from 'lucide-react'
-import { filterValidMedia } from '../../utils/utils'
+import {
+	filterValidMedia,
+	getScoreRangeData,
+	getUploadYearData,
+} from '../../utils/utils'
 import BarChart from '../../components/BarChart'
 
 export default function Page() {
@@ -18,17 +22,17 @@ export default function Page() {
 		(item) => item.analysis.type === 'game',
 	).length
 	const maxNum = Math.max(numMovies, numGames, numTv)
-
+	console.log('pepe', getScoreRangeData())
 	return (
 		<div className="h-full w-full">
 			<TopNavigation />
 			<div className="pb-8 max-w-[800px] mx-auto">
-				<div className="text-[44px] font-semibold tracking-tight leading-[1.1] flex flex-col gap-10 w-full pt-12 px-2">
+				<div className="text-[30px] lg:text-[44px] font-semibold tracking-tight leading-[1.1] flex flex-col gap-10 w-full pt-12 px-2">
 					<p>
-						<span className="inline-block w-8 h-8 bg-moist rounded mr-4">
+						<span className="inline-block w-6 h-6 lg:w-8 lg:h-8 bg-moist rounded mr-1 lg:mr-4">
 							<Image
 								src={WaterIcon}
-								className="h-[20px] w-[14px] mx-auto my-[6px]"
+								className="h-[12px] lg:h-[20px] w-[14px] mx-auto my-[6px]"
 								alt="water"
 							/>
 						</span>
@@ -68,9 +72,9 @@ export default function Page() {
 			</div>
 
 			<div className="flex bg-muted rounded-[20px] p-4 mt-6 max-w-[1000px] mx-auto flex-wrap">
-				<div className="w-[40%] p-1">
+				<div className="lg:w-[40%] w-full p-1">
 					<div className="rounded-[20px] p-4 bg-background w-full ">
-						<div className="flex flex-col items-start gap-2">
+						<div className="flex flex-col items-start gap-2 h-[300px]">
 							<div
 								className="rounded-full bg-red-600 flex gap-3 p-2 px-6 items-center justify-end"
 								style={{
@@ -128,10 +132,31 @@ export default function Page() {
 						</div>
 					</div>
 				</div>
-				<div className="w-[60%]  p-1">
+				<div className="lg:w-[60%] w-full  p-1">
 					<div className="rounded-[20px] p-4 bg-background w-full ">
-						<div className="w-full h-[200px]">
-							<BarChart data={[]} />
+						<div className="w-full h-[300px]">
+							<div className="font-semibold text-lg pl-2">
+								Number of Moist Meters over the years
+							</div>
+							<BarChart
+								data={getUploadYearData()}
+								keys={['score']}
+								indexBy={'year'}
+							/>
+						</div>
+					</div>
+				</div>
+
+				<div className=" w-full  p-1">
+					<div className="rounded-[20px] p-4 bg-background w-full ">
+						<div className="w-full h-[300px]">
+							<div className="font-semibold text-lg pl-2">
+								Moist Meter Scores
+							</div>
+							<BarChart
+								data={getScoreRangeData()}
+								keys={['score']}
+							/>
 						</div>
 					</div>
 				</div>

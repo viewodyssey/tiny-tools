@@ -44,3 +44,33 @@ export const filterValidMedia = ({
 export const findMedia = (videoId: string) => {
 	return filterValidMedia({}).find((item) => item.videoId === videoId)
 }
+
+export const getScoreRangeData = () => {
+	const scoreRangeStart = new Array(10).fill(0)
+	const videos = filterValidMedia({})
+	videos.forEach((video) => {
+		const index = Math.floor(video.analysis.score / 10)
+		scoreRangeStart[index] = scoreRangeStart[index] + 1
+	})
+	return scoreRangeStart.map((scoreCount, index) => ({
+		rating: `${index * 10}-${index * 10 + 9}`,
+		score: scoreCount,
+	}))
+}
+
+export const getUploadYearData = () => {
+	const uploadYearMap = {}
+	const videos = filterValidMedia({})
+	videos.forEach((video) => {
+		const year = video.publishedAt.slice(0, 4)
+		if (Object.keys(uploadYearMap).includes(year)) {
+			uploadYearMap[year] += 1
+		} else {
+			uploadYearMap[year] = 0
+		}
+	})
+	return Object.entries(uploadYearMap).map(([key, value]) => ({
+		year: key,
+		score: value,
+	}))
+}
