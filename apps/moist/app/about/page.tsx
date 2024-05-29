@@ -1,6 +1,7 @@
 'use client'
 import { BottomMenu } from '@/components/BottomMenu'
 import WaterIcon from '@/assets/white-moist.svg'
+import SplashImage from '@/assets/extensionSplash.jpg'
 import { TopNavigation } from '@/components/TopNavigation'
 import Image from 'next/image'
 import { Film, Gamepad, Tv } from 'lucide-react'
@@ -10,6 +11,8 @@ import {
 	getUploadYearData,
 } from '../../utils/utils'
 import BarChart from '../../components/BarChart'
+import Link from 'next/link'
+import { Button } from 'ui'
 
 export default function Page() {
 	const mediaItem = filterValidMedia({})
@@ -38,29 +41,61 @@ export default function Page() {
 						</span>
 						One man takes on the movie and gaming industry, one
 						review at a time.{' '}
-						<span className="opacity-50">
+						<span className="text-gray-400">
 							The Moist Meter documents content creator
 							penguinz0’s David vs. Goliath journey.
 						</span>
 					</p>
-					{/* <p className="opacity-50">
+					{/* <p className="text-gray-400">
 						Each piece of media he consumes is rated on a scale
 						known as the Moist Meter. These ratings are revered, as
 						professionals wait in baited breath for their creations
 						to be reviewed.{' '}
 					</p> */}
-					<p className="opacity-50">
-						With too much time on my hands, I (@eightants) decided
-						to document each Moist Meter on a Rotten Tomatoes-like
-						site to discover trends.{' '}
+					<p className="text-gray-400">
+						With too much time on my hands, I (
+						<Link
+							href="https://x.com/yihonganthony"
+							target="_blank"
+							rel="noopener noreferrer"
+							className="underline hover:text-blue-500"
+						>
+							@eightants
+						</Link>
+						) decided to document each Moist Meter on a Rotten
+						Tomatoes-like site to discover trends.{' '}
 					</p>
 					<p>
-						<span className="opacity-50">
+						<span className="text-gray-400">
 							I also built the Moist Meter extension, which brings
 							the scores to you on the web:{' '}
 						</span>
 						the ratings everyone deserves.{' '}
 					</p>
+
+					<div className="flex flex-col lg:flex-row gap-8 items-center w-full">
+						<div className="w-full lg:w-1/2 flex flex-col gap-2">
+							<h4 className="text-[30px] lg:text-[44px] font-semibold tracking-tight leading-[1.1]">
+								Get the extension
+							</h4>
+							<p className="text-base font-normal tracking-tight text-gray-600">
+								Add the coveted Moist Meter ratings on Google,
+								Rotten Tomatoes, and IMDB.
+							</p>
+							<div className="w-full lg:w-auto">
+								<Button className="w-full lg:w-auto">
+									Install
+								</Button>
+							</div>
+						</div>
+						<div className="w-full lg:w-1/2">
+							<Image
+								src={SplashImage}
+								alt=""
+								className="rounded w-full"
+							/>
+						</div>
+					</div>
 
 					<div>
 						<p>To date, there has been: </p>
@@ -158,6 +193,28 @@ export default function Page() {
 								keys={['score']}
 							/>
 						</div>
+					</div>
+				</div>
+			</div>
+
+			<div className="py-8 max-w-[800px] mx-auto">
+				<div className="w-full lg:w-1/2 flex flex-col gap-2">
+					<h4>How it works</h4>
+					<p className="text-base font-normal tracking-tight text-gray-600">
+						Data about the Moist Meter videos were obtained from the
+						penguinz0 YouTube channel. The titles for each review
+						were cross referenced with The Movie Database and Moby
+						Games to get metadata about the media.
+					</p>
+					<p className="text-base font-normal tracking-tight text-gray-600">
+						Charlie's rating and review from the video was extracted
+						through AI and summarized to provide quick information
+						at a glance.
+					</p>
+					<div className="w-full lg:w-auto pt-4">
+						<Button className="w-full lg:w-auto">
+							View on Github
+						</Button>
 					</div>
 				</div>
 			</div>
