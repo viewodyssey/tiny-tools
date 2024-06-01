@@ -9,6 +9,7 @@ import PosterItem from '../components/PosterItem'
 import Tabs from '../components/Tabs'
 import { SORT_ITEMS } from '../constants'
 import { filterValidMedia } from '../utils/utils'
+import Link from 'next/link'
 
 export default function Page() {
 	const [sort, setSort] = useState(SORT_ITEMS[0].value)
@@ -28,9 +29,15 @@ export default function Page() {
 							Rotten Tomatoes, and IMDB.
 						</p>
 						<div className="w-full lg:w-auto">
-							<Button className="w-full lg:w-auto">
-								Install
-							</Button>
+							<Link
+								href="https://chromewebstore.google.com/detail/moist-meter/fkjclkbcfieknijloglaflnkdekgccna"
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								<Button className="w-full lg:w-auto">
+									Install
+								</Button>
+							</Link>
 						</div>
 					</div>
 					<div className="w-full lg:w-1/2">

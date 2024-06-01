@@ -8,6 +8,7 @@ import { Film, Gamepad, Tv } from 'lucide-react'
 import {
 	filterValidMedia,
 	getScoreRangeData,
+	getUploadYearCategoryData,
 	getUploadYearData,
 } from '../../utils/utils'
 import BarChart from '../../components/BarChart'
@@ -25,7 +26,7 @@ export default function Page() {
 		(item) => item.analysis.type === 'game',
 	).length
 	const maxNum = Math.max(numMovies, numGames, numTv)
-	console.log('pepe', getScoreRangeData())
+	console.log('pepe', getUploadYearCategoryData())
 	return (
 		<div className="h-full w-full">
 			<TopNavigation />
@@ -83,9 +84,15 @@ export default function Page() {
 								Rotten Tomatoes, and IMDB.
 							</p>
 							<div className="w-full lg:w-auto">
-								<Button className="w-full lg:w-auto">
-									Install
-								</Button>
+								<Link
+									href="https://chromewebstore.google.com/detail/moist-meter/fkjclkbcfieknijloglaflnkdekgccna"
+									target="_blank"
+									rel="noopener noreferrer"
+								>
+									<Button className="w-full lg:w-auto">
+										Install
+									</Button>
+								</Link>
 							</div>
 						</div>
 						<div className="w-full lg:w-1/2">
