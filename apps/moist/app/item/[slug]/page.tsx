@@ -190,6 +190,20 @@ export default function Page({ params }: { params: { slug: string } }) {
 							</div>
 						)}
 
+						<div className="w-full flex justify-center my-4">
+							<iframe
+								width="100%"
+								height="315"
+								src={`https://www.youtube.com/embed/${data['videoId']}`}
+								title="YouTube video player"
+								frameBorder="0"
+								className="rounded-lg overflow-hidden"
+								allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+								referrerPolicy="strict-origin-when-cross-origin"
+								allowFullScreen
+							></iframe>
+						</div>
+
 						<div className="lg:hidden w-full">
 							<Link
 								href={`https://www.youtube.com/watch?v=${data.videoId}`}
