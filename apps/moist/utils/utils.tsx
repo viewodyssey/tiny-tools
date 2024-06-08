@@ -81,7 +81,7 @@ export const getScoreRangeCategoryData = () => {
 			}))
 		}
 
-		const videos = filterValidMedia({ type: category })
+		const videos = filterValidMedia({ type: category as any })
 		videos.forEach((video) => {
 			const index = Math.floor(video.analysis.score / 10)
 			scoreRangeStart[index] = scoreRangeStart[index] + 1
@@ -147,7 +147,7 @@ export const getUploadYearCategoryData = () => {
 			})
 		}
 
-		const videos = filterValidMedia({ type: category })
+		const videos = filterValidMedia({ type: category as any })
 		videos.forEach((video) => {
 			const year = video.publishedAt.slice(0, 4)
 			if (Object.keys(uploadYearMap).includes(year)) {
@@ -173,6 +173,6 @@ export const getUploadYearCategoryData = () => {
 
 	return Object.entries(yearToDataMap).map(([key, value]) => ({
 		year: key,
-		...value,
+		...(value as any),
 	}))
 }
