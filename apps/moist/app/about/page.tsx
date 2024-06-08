@@ -214,9 +214,9 @@ export default function Page() {
 						Games to get metadata about the media.
 					</p>
 					<p className="text-base font-normal tracking-tight text-gray-600">
-						Charlie's rating and review from the video was extracted
+						{`Charlie's rating and review from the video was extracted
 						through AI and summarized to provide quick information
-						at a glance.
+						at a glance.`}
 					</p>
 					<div className="w-full lg:w-auto pt-4">
 						<Button className="w-full lg:w-auto">
