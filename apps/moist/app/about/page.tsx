@@ -8,9 +8,7 @@ import { Film, Gamepad, Tv } from 'lucide-react'
 import {
 	filterValidMedia,
 	getScoreRangeCategoryData,
-	getScoreRangeData,
 	getUploadYearCategoryData,
-	getUploadYearData,
 } from '../../utils/utils'
 import BarChart from '../../components/BarChart'
 import Link from 'next/link'
