@@ -9,6 +9,12 @@ const ResponsiveBar = dynamic(
 	},
 )
 
+const ID_TO_LABEL_MAP = {
+	tv: 'TV',
+	movie: 'Movies',
+	game: 'Games',
+}
+
 const BarChart = ({ data, keys, indexBy }: any) => (
 	<ResponsiveBar
 		data={data ?? []}
@@ -20,7 +26,7 @@ const BarChart = ({ data, keys, indexBy }: any) => (
 		padding={0.3}
 		valueScale={{ type: 'linear' }}
 		indexScale={{ type: 'band', round: true }}
-		colors={{ scheme: 'nivo' }}
+		colors={['#16a34a', '#dc2626', '#2563eb']}
 		borderColor={{
 			from: 'color',
 			modifiers: [['darker', 1.6]],
@@ -45,11 +51,17 @@ const BarChart = ({ data, keys, indexBy }: any) => (
 		}}
 		labelTextColor={{
 			from: 'color',
-			modifiers: [['darker', 1.6]],
+			modifiers: [['brighter', 10]],
 		}}
 		role="application"
 		ariaLabel="Nivo bar chart demo"
-		tooltipLabel={(data) => `${data.indexValue}`}
+		tooltipLabel={(data) => {
+			return `${data.indexValue}${
+				Object.keys(ID_TO_LABEL_MAP).includes(String(data.id))
+					? ` ${ID_TO_LABEL_MAP[data.id]}`
+					: ''
+			}`
+		}}
 	/>
 )
 

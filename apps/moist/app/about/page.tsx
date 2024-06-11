@@ -7,6 +7,7 @@ import Image from 'next/image'
 import { Film, Gamepad, Tv } from 'lucide-react'
 import {
 	filterValidMedia,
+	getScoreRangeCategoryData,
 	getScoreRangeData,
 	getUploadYearCategoryData,
 	getUploadYearData,
@@ -26,7 +27,7 @@ export default function Page() {
 		(item) => item.analysis.type === 'game',
 	).length
 	const maxNum = Math.max(numMovies, numGames, numTv)
-	console.log('pepe', getUploadYearCategoryData())
+	console.log('pepe', getScoreRangeCategoryData())
 	return (
 		<div className="h-full w-full">
 			<TopNavigation />
@@ -74,8 +75,8 @@ export default function Page() {
 						the ratings everyone deserves.{' '}
 					</p>
 
-					<div className="flex flex-col lg:flex-row gap-8 items-center w-full">
-						<div className="w-full lg:w-1/2 flex flex-col gap-2">
+					<div className="flex flex-col md:flex-row gap-8 items-center w-full">
+						<div className="w-full md:w-1/2 flex flex-col gap-2">
 							<h4 className="text-[30px] lg:text-[44px] font-semibold tracking-tight leading-[1.1]">
 								Get the extension
 							</h4>
@@ -83,7 +84,7 @@ export default function Page() {
 								Add the coveted Moist Meter ratings on Google,
 								Rotten Tomatoes, and IMDB.
 							</p>
-							<div className="w-full lg:w-auto">
+							<div className="w-full md:w-auto">
 								<Link
 									href="https://chromewebstore.google.com/detail/moist-meter/fkjclkbcfieknijloglaflnkdekgccna"
 									target="_blank"
@@ -181,8 +182,8 @@ export default function Page() {
 								Number of Moist Meters over the years
 							</div>
 							<BarChart
-								data={getUploadYearData()}
-								keys={['score']}
+								data={getUploadYearCategoryData()}
+								keys={['game', 'movie', 'tv']}
 								indexBy={'year'}
 							/>
 						</div>
@@ -196,8 +197,8 @@ export default function Page() {
 								Moist Meter Scores
 							</div>
 							<BarChart
-								data={getScoreRangeData()}
-								keys={['score']}
+								data={getScoreRangeCategoryData()}
+								keys={['game', 'movie', 'tv']}
 							/>
 						</div>
 					</div>
