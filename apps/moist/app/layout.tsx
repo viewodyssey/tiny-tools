@@ -17,7 +17,6 @@ export const metadata: Metadata = {
 	title: headData.title,
 	description: headData.description,
 	openGraph: { title: headData.title, description: headData.description },
-	metadataBase: new URL('https://viewodyssey.com/moist-meter/'),
 }
 
 export default function RootLayout({
