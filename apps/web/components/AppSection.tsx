@@ -4,6 +4,7 @@ import ChromeRankImg from '@/assets/chromerank.png'
 import RecapImg from '@/assets/videorecap.png'
 import DemoedImg from '@/assets/idemoed.png'
 import MoistImg from '@/assets/moist.png'
+import GrapevineImg from '@/assets/grapevine.png'
 
 const APPS: AppCardItem[] = [
 	{
@@ -26,6 +27,13 @@ const APPS: AppCardItem[] = [
 		href: 'https://idemoed.vercel.app',
 		description:
 			'Showcase hexagon "I Demoed" stickers from physical and virtual hackathons. ',
+	},
+	{
+		title: 'Grapevine',
+		image: GrapevineImg.src,
+		href: 'https://grapevine.viewodyssey.com',
+		description:
+			'AI browser extension for quick summaries and Q&A as you browser the web. ',
 	},
 	{
 		title: 'Moist Meter',
