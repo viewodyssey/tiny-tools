@@ -218,9 +218,15 @@ export default function Page() {
 						at a glance.`}
 					</p>
 					<div className="w-full lg:w-auto pt-4">
-						<Button className="w-full lg:w-auto">
-							View on Github
-						</Button>
+						<Link
+							href="https://github.com/viewodyssey/tiny-tools/tree/main/apps/moist"
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							<Button className="w-full lg:w-auto">
+								View on Github
+							</Button>
+						</Link>
 					</div>
 				</div>
 			</div>
