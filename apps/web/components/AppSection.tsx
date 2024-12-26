@@ -24,7 +24,7 @@ const APPS: AppCardItem[] = [
 	{
 		title: 'I Demoed',
 		image: DemoedImg.src,
-		href: 'https://idemoed.vercel.app',
+		href: 'https://idemoed.viewodyssey.com',
 		description:
 			'Showcase hexagon "I Demoed" stickers from physical and virtual hackathons. ',
 	},

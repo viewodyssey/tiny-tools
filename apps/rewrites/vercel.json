@@ -11,11 +11,11 @@
 		},
 		{
 			"source": "/i-demoed",
-			"destination": "https://idemoed.vercel.app"
+			"destination": "https://idemoed.viewodyssey.com"
 		},
 		{
 			"source": "/i-demoed/:match*",
-			"destination": "https://idemoed.vercel.app/:match*"
+			"destination": "https://idemoed.viewodyssey.com/:match*"
 		},
 		{
 			"source": "/moist-meter",
