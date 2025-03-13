@@ -2,24 +2,32 @@ import { Button } from 'ui'
 import { AppCard, AppCardItem } from './AppCard'
 import ChromeRankImg from '@/assets/chromerank.png'
 import RecapImg from '@/assets/videorecap.png'
+import ArtifactsImg from '@/assets/artifacts.png'
 import DemoedImg from '@/assets/idemoed.png'
 import MoistImg from '@/assets/moist.png'
 import GrapevineImg from '@/assets/grapevine.png'
 
 const APPS: AppCardItem[] = [
 	{
-		title: 'Chrome Extension Ranking',
-		image: ChromeRankImg.src,
-		href: '/chrome-extension',
-		description:
-			'View historical rankings and analytics for search terms and Chrome extensions. ',
-	},
-	{
 		title: 'Video Recap',
 		image: RecapImg.src,
 		href: 'https://videorecap.viewodyssey.com',
 		description:
 			'View your YouTube year in review. 2M+ users, including YouTuber Ludwig Ahgren. ',
+	},
+	{
+		title: 'Artifacts',
+		image: ArtifactsImg.src,
+		href: 'https://artifacts.viewodyssey.com',
+		description:
+			'Digital archiving workflow that preserves the memory of sentimental items. ',
+	},
+	{
+		title: 'Chrome Extension Ranking',
+		image: ChromeRankImg.src,
+		href: '/chrome-extension',
+		description:
+			'View historical rankings and analytics for search terms and Chrome extensions. ',
 	},
 	{
 		title: 'I Demoed',
